@@ -1,0 +1,2316 @@
+# PlainBox translations
+# Copyright (C) 2014 Canonical
+# This file is distributed under the same license as the palinbox package.
+# Zygmunt <Krynicki>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: guacamole 0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-14 20:48+0100\n"
+"PO-Revision-Date: 2014-12-02 06:42+0000\n"
+"Last-Translator: Zygmunt Krynicki <zygmunt.krynicki@canonical.com>\n"
+"Language-Team: polski <>\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+msgid "usage: "
+msgstr "użycie: "
+
+msgid ".__call__() not defined"
+msgstr ".__call__() nie jest zdefiniowane"
+
+#, python-format
+msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
+msgstr "nieznany parser %(parser_name)r (możliwe wybory %(choices)s)"
+
+#, python-format
+msgid "argument \"-\" with mode %r"
+msgstr "argument \"-\" w trybie %r"
+
+#, python-format
+msgid "can't open '%s': %s"
+msgstr "nie można otworzyć '%s': %s"
+
+#, python-format
+msgid "cannot merge actions - two groups are named %r"
+msgstr "nie można scalić akcji - dwie grupy są nazwane %r"
+
+msgid "'required' is an invalid argument for positionals"
+msgstr "'required' jest niewłaściwym argumentem dla argumentów pozycyjnych"
+
+#, python-format
+msgid ""
+"invalid option string %(option)r: must start with a character "
+"%(prefix_chars)r"
+msgstr "niewłaściwa opcja %(option)r: musi zaczynać się od znaku %(prefix_chars)s"
+
+#, python-format
+msgid "dest= is required for options like %r"
+msgstr "dest= jest wymagane dla opcji takich jak %r"
+
+#, python-format
+msgid "invalid conflict_resolution value: %r"
+msgstr "niewłaściwa wartość dla conflict_resolution: %r"
+
+#, python-format
+msgid "conflicting option string: %s"
+msgid_plural "conflicting option strings: %s"
+msgstr[0] "konfliktująca opcja: %s"
+msgstr[1] "konfliktujące opcje: %s"
+msgstr[2] "konfliktujących opcji: %s"
+
+msgid "mutually exclusive arguments must be optional"
+msgstr "wzajemnie wykluczające argumenty muszą być opcjonalne"
+
+msgid "positional arguments"
+msgstr "argumenty pozycyjne"
+
+msgid "optional arguments"
+msgstr "argumenty opcjonalne"
+
+msgid "show this help message and exit"
+msgstr "wyświetl tę wiadomość pomocy i wyjdź"
+
+msgid "show program's version number and exit"
+msgstr "pokaż numer wersji programu i wyjdź"
+
+msgid "cannot have multiple subparser arguments"
+msgstr "nie można mieć wielu podrzędnych parserów argumentów"
+
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr "nierozpoznane argumenty: %s"
+
+#, python-format
+msgid "not allowed with argument %s"
+msgstr "niedozwolony wraz z argumentem: %s"
+
+#, python-format
+msgid "ignored explicit argument %r"
+msgstr "zignorowano wyraźny argument %r"
+
+msgid "too few arguments"
+msgstr "za mało argumentów"
+
+#, python-format
+msgid "argument %s is required"
+msgstr "wymagany %s jest wymagany"
+
+#, python-format
+msgid "one of the arguments %s is required"
+msgstr "wymagany jest jeden z argumentów %s"
+
+msgid "expected one argument"
+msgstr "oczekiwano jednego argumentu"
+
+msgid "expected at most one argument"
+msgstr "oczekiwano co najwyżej jednego argumentu"
+
+msgid "expected at least one argument"
+msgstr "oczekiwano co najmniej jednego argumentu"
+
+#, python-format
+msgid "expected %s argument"
+msgid_plural "expected %s arguments"
+msgstr[0] "oczekiwano %s argumentu"
+msgstr[1] "oczekiwano %s argumentów"
+msgstr[2] "oczekiwano %s argumentów"
+
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr "niejasna opcja: %(option)s może pasować do %(matches)s"
+
+#, python-format
+msgid "unexpected option string: %s"
+msgstr "nieoczekiwana opcja: %s"
+
+#, python-format
+msgid "%r is not callable"
+msgstr "nie można wywołać %r"
+
+#, python-format
+msgid "invalid %(type)s value: %(value)r"
+msgstr "niewłaściwa wartość %(type)s: %(value)r"
+
+#, python-format
+msgid "invalid choice: %(value)r (choose from %(choices)s)"
+msgstr "niewłaściwy wybór: %(value)r (wybierz z %(choices)s)"
+
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr "%(prog)s: błąd: %(message)s\n"
+
+#, python-format
+msgid "the following arguments are required: %s"
+msgstr "wymagane są następujące argumenty: %s"
+
+#, python-format
+msgid "Unable to create log directory: %s"
+msgstr "Nie można stworzyć katalogu dziennika: %s"
+
+#, python-format
+msgid "Reason: %s. All logs will go to console instead."
+msgstr "Powód: %s. Wszystkie wpisy dziennika pójdą na konsole."
+
+#, python-format
+msgid "Enabled %r on root logger"
+msgstr "Uruchomiono %r na głównym strumieniu dziennika"
+
+#, python-format
+msgid "Enabled debugging on logger %r"
+msgstr "Uruchomiono debugowanie na strumieniu dziennika %r"
+
+msgid "Unable to find any of the executables {}"
+msgstr "Nie można znaleźć żadnego z plików wykonywalnych {}"
+
+#, python-format
+msgid "Unable to prepare plugin %s: %s"
+msgstr "Nie można przygotować wtyczki %s: %s"
+
+msgid "discovery_time is meaningful after calling load()"
+msgstr "discovery_time ma sens po wywołaniu load()"
+
+#, python-format
+msgid "Unable to import %s"
+msgstr "Nie można zaimportować %s"
+
+#, python-format
+msgid "Unable to load %r: %s"
+msgstr "Nie można wczytać %r: %s"
+
+#, python-format
+msgid "Loading everything in %r"
+msgstr ""
+
+#, python-format
+msgid "Loading %r"
+msgstr ""
+
+#, python-format
+msgid "Unable to load: %r"
+msgstr ""
+
+#, python-format
+msgid "Wrapping %r"
+msgstr ""
+
+#, python-format
+msgid "Importing %s"
+msgstr ""
+
+#, python-format
+msgid "Calling %r with %r"
+msgstr ""
+
+msgid "msgid"
+msgstr "msgid"
+
+msgid "msgid1"
+msgid_plural "msgid2"
+msgstr[0] "msgid1"
+msgstr[1] "msgid2"
+msgstr[2] "msgid3"
+
+#, fuzzy
+msgctxt "msgctxt"
+msgid "msgid"
+msgstr "msgid"
+
+#, python-format
+msgid "Constructed %r"
+msgstr ""
+
+msgid "Activated early logging via environment variables"
+msgstr ""
+
+msgid "Tool initialization (early mode)"
+msgstr ""
+
+msgid "Parsing command line arguments (early mode)"
+msgstr ""
+
+#, python-format
+msgid "Command line parsed to (early mode): %r"
+msgstr ""
+
+msgid "Tool initialization (late mode)"
+msgstr ""
+
+msgid "Parser construction"
+msgstr ""
+
+msgid "Parsing command line arguments"
+msgstr ""
+
+#, python-format
+msgid "Command line parsed to: %r"
+msgstr ""
+
+msgid "Tool initialization (final steps)"
+msgstr ""
+
+msgid "Tool initialization complete"
+msgstr ""
+
+msgid "Dispatching command..."
+msgstr ""
+
+#, fuzzy
+msgid "logging and debugging options"
+msgstr "dziennik i odpluskwianie oprogramowania"
+
+#. TRANSLATORS: please keep --log-level=INFO untranslated
+msgid "be more verbose (same as --log-level=INFO)"
+msgstr "bądź bardziej wymowny (tak samo jak --log-level=INFO)"
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "enable DEBUG messages on the root logger"
+msgstr "włącz wiadomości DEBUG w głównym strumieniu dziennika"
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "display DEBUG messages in the console"
+msgstr "wyświetlaj wiadomości DEBUG w konsoli"
+
+msgid "LOGGER-ID"
+msgstr ""
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "enable DEBUG messages on the specified logger (can be used multiple times)"
+msgstr ""
+"zezwalaj na wiadomości typu DEBUG w określonym strumieniu dziennika (ta "
+"opcja może być użyta wielokrotnie)"
+
+#, fuzzy
+msgid "debugging options"
+msgstr "dziennik"
+
+#. TRANSLATORS: please keep pdb untranslated
+#, fuzzy
+msgid "jump into pdb when a command crashes"
+msgstr "wskocz do pdb (debuggera pythona) gdy polecenie ulegnie awarii"
+
+#. TRANSLATORS: please keep SIGINT/KeyboardInterrupt and --pdb
+#. untranslated
+msgid "crash on SIGINT/KeyboardInterrupt, useful with --pdb"
+msgstr "ulegnij awarii na SIGINT/KeyboardInterrupt, przydatne razem z --pdb"
+
+#. TRANSLATORS: please keep SystemExit untranslated
+msgid "caught SystemExit, exiting"
+msgstr "złapano SystemExit, wychodzenie"
+
+#, python-format
+msgid "caught %r, deciding on what to do next"
+msgstr "złapano %r, podejmowanie decyzji co dalej"
+
+#, python-format
+msgid "action for exception %r is %s"
+msgstr "akcja dla wyjątku %r to %s"
+
+#, python-format
+msgid "Executable %r invoked with %r has crashed"
+msgstr "Plik wykonywalny %r uruchomiony z %r uległ awarii"
+
+#, python-format
+msgid "caught runaway exception: %r"
+msgstr "złapano nieobsłużony wyjątek: %r"
+
+msgid "starting debugger..."
+msgstr "uruchamianie debuggera..."
+
+#, python-format
+msgid "Trying to load exactly the right command: %r"
+msgstr ""
+
+#, python-format
+msgid "Cost of registering guessed command: %f"
+msgstr ""
+
+#, python-format
+msgid "Cost of loading all top-level commands: %f"
+msgstr ""
+
+#, python-format
+msgid "Cost of registering all top-level commands: %f"
+msgstr ""
+
+#~ msgid "Unable to start SSH on the phablet device"
+#~ msgstr "Nie można uruchomić SSH na tablecie/telefonie"
+
+#~ msgid "Unable to setup port forwarding to the phablet device"
+#~ msgstr "Nie można przygotować przekazywania portów do telefonu/tabletu"
+
+#~ msgid "No phablet devices detected"
+#~ msgstr "Nie wykryto żadnych telefonów/tabletów"
+
+#~ msgid "Multiple phablet devices detected"
+#~ msgstr "Wykryto wiele telefonów/tabletów"
+
+#~ msgid "Unable to purge phablet device entry from ~/.ssh/known_hosts"
+#~ msgstr "Nie można wyczyścić wpisu telefonu/tabletu z ~/.ssh/known_hosts"
+
+#~ msgid "Unable to copy public ssh key over to the phablet device"
+#~ msgstr "Nie można skopiować publicznego klucza ssh do telefonu/tabletu"
+
+#~ msgid "No public ssh keys found on the local account"
+#~ msgstr "Lokalne konto nie posiada żadnych publicznych kluczy ssh"
+
+#~ msgid "Programming error: {0}"
+#~ msgstr "Błąd programistyczny: {0}"
+
+#~ msgid "Run a command on Ubuntu Phablet"
+#~ msgstr "Uruchom polecenie na Telefonie/Tablecie Ubuntu"
+
+#~ msgid "device connection options"
+#~ msgstr "opcje połączenia z urządzeniem"
+
+#~ msgid "connect to the device with the specified serial number"
+#~ msgstr "połącz do urządzenia z podanym numerem seryjnym"
+
+#~ msgid "timeout for device discovery"
+#~ msgstr "limit czasu na wyszukiwanie urządzeń"
+
+#~ msgid "use the specified public key"
+#~ msgstr "użyj podanego publicznego klucza"
+
+#~ msgid "be more verbose during connection set-up"
+#~ msgstr "bądź bardziej wymowny"
+
+#~ msgid "set log level (for debugging)"
+#~ msgstr "ustaw poziom wiadomości dziennika (do debugowania)"
+
+#~ msgid ""
+#~ msgstr "Weryfikowanie jednostki %s"
+
+#~ msgid "Unsupported platform: %s"
+#~ msgstr "Nieobsługiwana platforma: %s"
+
+#~ msgid "StubBox (dummy data for development)"
+#~ msgstr "StubBox (atrapa z danymi do rozwoju oprogramowania)"
+
+#~ msgid "Common test category definitions"
+#~ msgstr "Wspólne definicje kategorii testów"
+
+#~ msgid "The Category provider is special"
+#~ msgstr "Dostawca kategorii jest specjalny"
+
+#~ msgid "You don't need to develop it explicitly"
+#~ msgstr "Nie trzeba go specjalnie developować"
+
+#~ msgid "You don't need to install it explicitly"
+#~ msgstr "Nie trzeba go specjalnie instalować"
+
+#~ msgid "The StubBox provider is special"
+#~ msgstr "Dostawca StubBox jest specjalny"
+
+#~ msgid "error"
+#~ msgstr "błąd"
+
+#~ msgid "warning"
+#~ msgstr "ostrzeżenie"
+
+#~ msgid "advice"
+#~ msgstr "porada"
+
+#~ msgid "Problem with field {}: {}"
+#~ msgstr "Problem z polem {}: {}"
+
+#~ msgid "dependency cycle detected: {}"
+#~ msgstr "wykryto cykl zależności: {}"
+
+#~ msgid "missing dependency: {!r} ({})"
+#~ msgstr "brakująca zależność: {!r} ({})"
+
+#~ msgid "duplicate job id: {!r}"
+#~ msgstr "powtarzający się identyfikator zadania: {!r}"
+
+#~ msgid "Starting solve"
+#~ msgstr "Rozpoczynanie rozwiązywania"
+
+#~ msgid "Done solving"
+#~ msgstr "Rozwiązywanie zakończone"
+
+#~ msgid "Visiting job %s (color %s)"
+#~ msgstr "Odwiedzanie zadania %s (kolor %s)"
+
+#~ msgid "Visiting dependency: %r"
+#~ msgstr "Odwiedzanie zależności: %r"
+
+#~ msgid "Appending %r to solution"
+#~ msgstr "Dodawanie %r do rozwiązania"
+
+#~ msgid "Unsupported option: {}"
+#~ msgstr "Nieobsługiwana opcja: {}"
+
+#~ msgid "Platform Name"
+#~ msgstr "Nazwa platformy"
+
+#~ msgid "BIOS"
+#~ msgstr "BIOS"
+
+#~ msgid "Processors"
+#~ msgstr "Procesory"
+
+#~ msgid "Chipset"
+#~ msgstr "Chipset"
+
+#~ msgid "Memory"
+#~ msgstr "Pamięć"
+
+#~ msgid "Video (on board)"
+#~ msgstr "Karta wideo (wbudowana)"
+
+#~ msgid "Video (add-on)"
+#~ msgstr "Karta wideo (dedykowana)"
+
+#~ msgid "Video memory"
+#~ msgstr "Pamięć wideo"
+
+#~ msgid "Audio"
+#~ msgstr "Dźwięk"
+
+#~ msgid "NIC"
+#~ msgstr "Sieć"
+
+#~ msgid "Wireless"
+#~ msgstr "Sieć bezprzewodowa"
+
+#~ msgid "Bluetooth"
+#~ msgstr "Bluetooth"
+
+#~ msgid "Packages Installed"
+#~ msgstr "Zainstalowane pakiety"
+
+#~ msgid "Name"
+#~ msgstr "Nazwa"
+
+#~ msgid "Version"
+#~ msgstr "Wersja"
+
+#~ msgid "N/A"
+#~ msgstr "B/D"
+
+#~ msgid "Failures summary"
+#~ msgstr "Podsumowanie niepowodzeń"
+
+#~ msgid "{} Test passed"
+#~ msgid_plural "{} Tests passed"
+#~ msgstr[0] "{} Test zakończony sukcesem"
+#~ msgstr[1] ""
+#~ msgstr[2] ""
+
+#~ msgid "Success Rate: {} ({}/{})"
+#~ msgstr "{} Testy zakończone sukcesem"
+
+#~ msgid "{} Test failed"
+#~ msgstr "Odsetek sukcesów  {} ({}/{})"
+
+#~ msgid "{} Tests failed"
+#~ msgstr "{} Test zakończony niepowodzeniem"
+
+#~ msgid "Failure Rate: {} ({}/{})"
+#~ msgstr "{} Testy zakończone niepowodzeniem"
+
+#~ msgid "{} Test skipped"
+#~ msgstr "Odsetek niepowodzeń: {} ({}/{})"
+
+#~ msgid "{} Tests skipped"
+#~ msgstr "{} Test pominięty"
+
+#~ msgid "Skip Rate: {} ({}/{})"
+#~ msgstr "{} Testy pominięte"
+
+#~ msgid "Summary"
+#~ msgstr "Odsetek pominięć: {} ({}/{})"
+
+#~ msgid "Test Descriptions"
+#~ msgstr "Podsumowanie"
+
+#~ msgid "Tests Performed"
+#~ msgstr "Opisy testów"
+
+#~ msgid "Result"
+#~ msgstr "Wykonane testy"
+
+#~ msgid "I/O Log"
+#~ msgstr "Wynik"
+
+#~ msgid "Comments"
+#~ msgstr "Dziennik We/Wy"
+
+#~ msgid "Description"
+#~ msgstr "Komentarze"
+
+#~ msgid "System Info"
+#~ msgstr "Opis"
+
+#~ msgid "Test Results"
+#~ msgstr "Informacje o systemie"
+
+#~ msgid "Log Files"
+#~ msgstr "Wyniki testów"
+
+#~ msgid "System Testing Report"
+#~ msgstr "Pliki dziennika"
+
+#~ msgid "Uncategorised"
+#~ msgstr "Raport Testowania Systemu"
+
+#~ msgid "Unable to load %s: %s"
+#~ msgstr "Bez kategorii"
+
+#~ msgid "Unable to import %s: %s"
+#~ msgstr "Nie można wczytać %s: %s"
+
+#~ msgid "Unable to load resource %s, not inlining"
+#~ msgstr "Nie można zaimportować %s: %s"
+
+#~ msgid "Resource of type %s unknown"
+#~ msgstr "Nie można wczytać zasobu %s, nie wklejam w miejscu"
+
+#~ msgid "Cannot parse input"
+#~ msgstr "Zasób rodzaju %s jest nieznany"
+
+#~ msgid "None of the providers had a whitelist named '{}'"
+#~ msgstr "Nie można dokonać analizy składniowej wejścia"
+
+#~ msgid "Environment variables for scripts and jobs"
+#~ msgstr "Żaden z dostawców nie posiada planu testów '{}'"
+
+#~ msgid "Which implementation of extcmd to use"
+#~ msgstr "Zmienne środowiska dla skryptów i zadań"
+
+#~ msgid "unsupported value for cause"
+#~ msgstr ""
+
+#~ msgid "related_job must not be None when cause is {}"
+#~ msgstr "nieobsługiwany wartość przyczyny"
+
+#~ msgid "related_expression must not be None when cause is {}"
+#~ msgstr "relative_job nie może być None gdy cause to {}"
+
+#~ msgid "undesired"
+#~ msgstr "related_expression nie może być None gdy cause jest {}"
+
+#~ msgid "required dependency {!r} did not run yet"
+#~ msgstr "niepożądane"
+
+#~ msgid "required dependency {!r} has failed"
+#~ msgstr "wymagana zależność {!r} jeszcze nie została uruchomiona"
+
+#~ msgid "resource expression {!r} evaluates to false"
+#~ msgstr ""
+
+#~ msgid "job cannot be started: {}"
+#~ msgstr "wyrażenie zasobu {!r} obliczono do fałszu"
+
+#~ msgid "job can be started"
+#~ msgstr "zadanie nie może zostać rozpoczęte: {}"
+
+#~ msgid "Enumerating sessions in %s"
+#~ msgstr ""
+
+#~ msgid "Found possible session in %r"
+#~ msgstr "Wyliczanie sesji w %s"
+
+#~ msgid "Session repository %s it not a directory"
+#~ msgstr "Odnaleziono potencjalną sesję w %r"
+
+#~ msgid "Session repository %s is read-only"
+#~ msgstr ""
+
+#~ msgid "Using temporary directory %s as session repository"
+#~ msgstr ""
+
+#~ msgid "Created new storage in %r"
+#~ msgstr ""
+
+#~ msgid "%r is not a symlink, repository %r must be corrupted"
+#~ msgstr "Stworzono nowe miejsce do zapisu w %r"
+
+#~ msgid "Unable to read symlink target from %r: %r"
+#~ msgstr "%r nie jest dowiązaniem symbolicznym, repozytorium %r musi być popsute"
+
+#~ msgid "Removing storage associated with last session %r"
+#~ msgstr "Nie można odczytać celu dowiązania symbolicznego %r: %r"
+
+#~ msgid "Removing symlink associated with last session: %r"
+#~ msgstr "Usuwanie miejsca do zapisu skojarzonego z sesją %r"
+
+#~ msgid "Linking storage %r to last session"
+#~ msgstr "Usuwanie dowiązania symbolicznego skojarzonego z ostatnią sesją: %r"
+
+#~ msgid "Cannot link %r as %r: %r"
+#~ msgstr "Dowiązywanie miejsca do zapisu %r do ostatniej sesji"
+
+#~ msgid "Removing session storage from %r"
+#~ msgstr "Nie można dowiązać %r do %r: %r"
+
+#~ msgid "Forcibly unlinking 'next' file %r"
+#~ msgstr "Usuwanie miejsca do zapisu dla sesji z %r"
+
+#~ msgid "Loading checkpoint (%s)"
+#~ msgstr "Siłowe usuwanie pliku 'next': %r"
+
+#~ msgid "Opened session state file %r as descriptor %d"
+#~ msgstr "Wczytywanie punktu kontrolnego (%s)"
+
+#~ msgid "Stat'ed session state file: %s"
+#~ msgstr "Otwarto plik stanu sesji %r jako deskryptor %d"
+
+#~ msgid "Reading %d byte of session state"
+#~ msgstr "Stat'owano plik stanu sesji: %s"
+
+#~ msgid "Reading %d bytes of session state"
+#~ msgstr "Odczytywanie %d bajtu danych stanu sesji"
+
+#~ msgid "Read %d byte of session state"
+#~ msgstr "Odczytywanie %d bajtów danych stanu sesji"
+
+#~ msgid "Read %d bytes of session state"
+#~ msgstr "Odczytano %d bajt stanu sesji"
+
+#~ msgid "partial read?"
+#~ msgstr "Odczytano %d bajty stanu sesji"
+
+#~ msgid "Closed descriptor %d"
+#~ msgstr "częściowy odczyt?"
+
+#~ msgid "Opened session directory %r as descriptor %d"
+#~ msgstr "Zamknięto deskryptor %d"
+
+#~ msgid "Saving %d byte of data (%s)"
+#~ msgstr "Otwarto katalog sesji %r jako deskryptor %d"
+
+#~ msgid "Saving %d bytes of data (%s)"
+#~ msgstr "Zapisywanie %d bajtu danych migawki do %r"
+
+#~ msgid "Opened next session file %s as descriptor %d"
+#~ msgstr "Zapisywanie %d bajtów danych migawki do %r"
+
+#~ msgid "Wrote %d byte of data to descriptor %d"
+#~ msgstr "Otwarto plik następnej sesji %s jako deskryptor %d"
+
+#~ msgid "Wrote %d bytes of data to descriptor %d"
+#~ msgstr "Zapisano %d bajt danych do deskryptora %d"
+
+#~ msgid "partial write?"
+#~ msgstr "Zapisano %d bajty danych do deskryptora %d"
+
+#~ msgid "Unable to complete write: %s"
+#~ msgstr "częściowy odczyt?"
+
+#~ msgid "Unlinking %r: %r"
+#~ msgstr "Nie można zakończyć zapisu: %s"
+
+#~ msgid "Calling fsync() on descriptor %d"
+#~ msgstr "Usuwanie %r: %r"
+
+#~ msgid "Cannot synchronize file %r: %s"
+#~ msgstr "Wołanie funkcji fsync() z deskryptorem %d"
+
+#~ msgid "Closing descriptor %d"
+#~ msgstr ""
+
+#~ msgid "Renaming %r to %r"
+#~ msgstr "Zamykanie deskryptora %d"
+
+#~ msgid "Unable to rename/overwrite %r to %r: %r"
+#~ msgstr "Zmienianie nazwy %r na %r"
+
+#~ msgid "Unlinking %r"
+#~ msgstr "Nie można zmienić nazwy/nadpisać %r na %r: %r"
+
+#~ msgid "Opened %r as descriptor %d"
+#~ msgstr "Usuwanie %r"
+
+#~ msgid "Unable to complete write: %r"
+#~ msgstr "Otwarto %r jako deskryptor %d"
+
+#~ msgid "Cannot synchronize directory %r: %s"
+#~ msgstr "Nie można zakończyć zapisu: %r"
+
+#~ msgid "Created SessionManager with device_context_list:%r and storage:%r"
+#~ msgstr ""
+
+#~ msgid "Saving %d byte of checkpoint data to %r"
+#~ msgstr "Stworzono SessionManager z device_context_list:%r i storage:%r"
+
+#~ msgid "Saving %d bytes of checkpoint data to %r"
+#~ msgstr "Zapisywanie %d bajtu danych migawki do %r"
+
+#~ msgid "Device context %s added to session manager %s"
+#~ msgstr ""
+
+#~ msgid "Device context %s removed from session manager %s"
+#~ msgstr "Kontekst urządzenia %s został dodany do menadżera sesji %s"
+
+#~ msgid "Cannot decompress session data"
+#~ msgstr "menadżer sesji nie wspiera obecnie sesji z wieloma urządzeniami"
+
+#~ msgid "Cannot decode session text"
+#~ msgstr "Nie można dekompresować danych sesji"
+
+#~ msgid "Cannot interpret session JSON"
+#~ msgstr "Nie można zdekodować tekstu sesji"
+
+#~ msgid "Peeking at json... (see below)"
+#~ msgstr "Nie można zinterpretować danych JSON sesji"
+
+#~ msgid "Unsupported version {}"
+#~ msgstr "Podglądanie json'a... (patrz niżej)"
+
+#~ msgid "Resuming from json... (see below)"
+#~ msgstr "Nieobsługiwana wersja {}"
+
+#~ msgid "Each flag must be a string"
+#~ msgstr "Wznawianie z json... (patrz niżej)"
+
+#~ msgid "app_blob is not ASCII"
+#~ msgstr "Każda flaga musi być napisem"
+
+#~ msgid "Cannot base64 decode app_blob"
+#~ msgstr "app_blob nie jest ASCII"
+
+#~ msgid "Starting to restore metadata..."
+#~ msgstr "Nie można zdekodować app_blob jako base64"
+
+#~ msgid "Constructed new session for resume %r"
+#~ msgstr "Rozpoczynanie wznawiania metadanych..."
+
+#~ msgid "Invoking early callback %r"
+#~ msgstr "Skonstruowano nową sesję dla wznowienia %r"
+
+#~ msgid "Using different session for resume: %r"
+#~ msgstr "Wywoływanie wczesnego callback'a %r"
+
+#~ msgid "Starting to restore jobs and results to %r..."
+#~ msgstr "Używanie innej sesji dla wznowienia: %r"
+
+#~ msgid "restored metadata %r"
+#~ msgstr "Rozpoczynanie wznawiania zadań i wyników do %r..."
+
+#~ msgid "Starting to restore desired job list..."
+#~ msgstr "wznowiono metadane %r"
+
+#~ msgid "Starting to restore job list..."
+#~ msgstr "Rozpoczynanie wznawiania listy pożądanych zadań..."
+
+#~ msgid "Resume complete!"
+#~ msgstr "Rozpoczynanie wznawiania listy zadań..."
+
+#~ msgid "Unknown jobs remaining: {}"
+#~ msgstr "Wznawianie zakończone!"
+
+#~ msgid "Ignoring changes to job %r)"
+#~ msgstr "Pozostały nieznane zadania: {}"
+
+#~ msgid "Definition of job {!r} has changed"
+#~ msgstr "Ignorowanie zmian w zadaniu %r)"
+
+#~ msgid "calling update_job_result(%r, %r)"
+#~ msgstr "Definicja zadania {!r} uległa zmianie"
+
+#~ msgid "Each job id must be a string"
+#~ msgstr "wołanie update_job_result(%r, %r)"
+
+#~ msgid "calling update_desired_job_list(%r)"
+#~ msgstr "Identyfikator każdego zadania musi być napisem"
+
+#~ msgid "'desired_job_list' refers to unknown job {!r}"
+#~ msgstr "wołanie update_desired_job_list(%r)"
+
+#~ msgid "Rewrote file name from %r to %r"
+#~ msgstr "'desired_job_list' odnosi się do nieznanego zadania {!r}"
+
+#~ msgid "cannot access file: {!r}"
+#~ msgstr "Zmieniono nazwę pliku z %r na %r"
+
+#~ msgid "delay cannot be negative"
+#~ msgstr "nie można uzyskać dostępu do pliku: {!r}"
+
+#~ msgid "record data {!r} is not ASCII"
+#~ msgstr "delay nie może być ujemne"
+
+#~ msgid "record data {!r} is not correct base64"
+#~ msgstr "dane rekordu {!r} nie są ASCII"
+
+#~ msgid "key {!r}"
+#~ msgstr "dane rekordu {!r} nie są poprawnym base64"
+
+#~ msgid "Missing value for key {!r}"
+#~ msgstr "klucz {!r}"
+
+#~ msgid "object"
+#~ msgstr "Brakuję wartości klucza {!r}"
+
+#~ msgid "Value of {} cannot be None"
+#~ msgstr "obiekt"
+
+#~ msgid "Value of {} is of incorrect type {}"
+#~ msgstr "Wartość {} nie może być None"
+
+#~ msgid "Value for {} not in allowed set {!r}"
+#~ msgstr "Wartość {} jest niewłaściwego typu {}"
+
+#~ msgid ".manager accessed"
+#~ msgstr "Wartość {} nie jest w dozwolonym zbiorze {!r}"
+
+#~ msgid "Session not ready, did you call open()?"
+#~ msgstr "dostęp do .manager"
+
+#~ msgid "_commit_resume() finished"
+#~ msgstr "Sesja nie jest gotowa, czy wywołałeś funkcję open()?"
+
+#~ msgid "app_blob must be either None or bytes"
+#~ msgstr "zakończono _commit_resume()"
+
+#~ msgid "app_id must be either None or str"
+#~ msgstr "app_blob musi być None lub bytes"
+
+#~ msgid "attempting to add the same provider twice"
+#~ msgstr "app_id musi być None lub bytes"
+
+#~ msgid "attempting to add the same unit twice"
+#~ msgstr "próba dodania tego samego dostawcy drugi raz"
+
+#~ msgid "attempting to remove unit not in this context"
+#~ msgstr "próba dodania tej samej jednostki drugi raz"
+
+#~ msgid "No exec controller supports job {}"
+#~ msgstr "próba usunięcia jednostki której nie ma w tym kontekście"
+
+#~ msgid "Selected execution controller %s (score %d) for job %r"
+#~ msgstr "Żaden kontroler wykonania nie wspiera zadania {}"
+
+#~ msgid "Provider %s added to context %s"
+#~ msgstr "Wybrano kontroler wykonania %s (punkty %d) dla zadania %r"
+
+#~ msgid "Unit %s added to context %s"
+#~ msgstr "Dostawca %s został dodany do kontekstu %s"
+
+#~ msgid "Unit %s removed from context %s"
+#~ msgstr "Jednostka %s została dodana do kontekstu %s"
+
+#~ msgid "Job %s result changed to %r"
+#~ msgstr "Jednostka %s została usunięta z kontekstu %s"
+
+#~ msgid "cannot remove jobs that are on the run list: {}"
+#~ msgstr "Wynik zadania %r zmieniony na %r"
+
+#~ msgid "expression {!r} evaluated to a non-true result"
+#~ msgstr "nie można usunąć zadań które są na liście do wykonania: {}"
+
+#~ msgid "expression {!r} needs unavailable resource {!r}"
+#~ msgstr "wyrażenie {!r} obliczono do wyniku nie będącego prawdą"
+
+#~ msgid "this kind of python code is not allowed: {}"
+#~ msgstr "wyrażenie {!r} potrzebuje niedostępnego zasobu {!r}"
+
+#~ msgid "expression did not reference any resources"
+#~ msgstr "ten rodzaj kodu pythona nie jest dozwolony: {}"
+
+#~ msgid "expression referenced multiple resources"
+#~ msgstr "wyrażenie nie odniosło się do żadnych zasobów"
+
+#~ msgid "syntax error in resource expression"
+#~ msgstr "wyrażenie odniosło się do wielu zasobów"
+
+#~ msgid "Exception in requirement expression %r (with %s=%r): %r"
+#~ msgstr "błąd składniowy w wyrażeniu zasobu"
+
+#~ msgid "unable to parse imports statement {0!r}: expected 'from' keyword"
+#~ msgstr ""
+
+#~ msgid "unable to parse imports statement {0!r}: expected 'import' keyword"
+#~ msgstr ""
+
+#~ msgid "unable to parse imports statement {0!r}: expected 'as' keyword"
+#~ msgstr ""
+
+#~ msgid "???"
+#~ msgstr ""
+
+#~ msgid "command line argument {}={!a}"
+#~ msgstr "???"
+
+#~ msgid "command line argument {!a}"
+#~ msgstr "argument linii zadań {}={!a}"
+
+#~ msgid "Committed key/value %r=%r"
+#~ msgstr "argument linii zadań {!a}"
+
+#~ msgid "Looking at line %d:%r"
+#~ msgstr "Zatwierdzono klucz/wartość %r=%r"
+
+#~ msgid "yielding record: %r"
+#~ msgstr "Patrzenie na linię %d:%r"
+
+#~ msgid "Unexpected multi-line value"
+#~ msgstr "yieldowanie rekordu: %r"
+
+#~ msgid "Job has a duplicate key {!r} with old value {!r} and new value {!r}"
+#~ msgstr "Nieoczekiwana wartość wielowierszowa"
+
+#~ msgid "Unexpected non-empty line: {!r}"
+#~ msgstr ""
+
+#~ msgid "argument {!a}, expected {}, got {}"
+#~ msgstr "Nieoczekiwane nie-pusta linia: {!r}"
+
+#~ msgid "Cannot load {!r}: {}"
+#~ msgstr "argument {1A}, oczekiwano {}, dostano {}"
+
+#~ msgid "Loading units from %r..."
+#~ msgstr ""
+
+#~ msgid "Cannot load job definitions from {!r}: {}"
+#~ msgstr "Wczytywanie jednostek z %r..."
+
+#~ msgid "Unknown unit type: {!r}"
+#~ msgstr "Nie można wczytać definicji zadań testowych z {!r}: {}"
+
+#~ msgid "Cannot define unit from record {!r}: {}"
+#~ msgstr "Nieznany typ jednostki: {!r}"
+
+#~ msgid "Problem in unit definition, {}"
+#~ msgstr "Nie można zdefiniować jednostki z rekordu {!r}: {}"
+
+#~ msgid "Problem in unit definition, field {}: {}"
+#~ msgstr "Problem w definicji jednostki, {}"
+
+#~ msgid "Loaded %r"
+#~ msgstr "Problem w definicji jednostki, pole {}: {}"
+
+#~ msgid "must look like RFC3720 IQN"
+#~ msgstr "Wczytano %r"
+
+#~ msgid "must be a sequence of digits separated by dots"
+#~ msgstr "musi wyglądać jak IQN z RFC3720"
+
+#~ msgid "no such directory"
+#~ msgstr "musi być sekwencją cyfr oddzieloną kropkami"
+
+#~ msgid "cannot be relative"
+#~ msgstr "nie ma takiego katalogu"
+
+#~ msgid "Base directory with provider data"
+#~ msgstr "nie może być względny"
+
+#~ msgid "Name of the provider"
+#~ msgstr "Bazowy katalog z danymi dostawcy"
+
+#~ msgid "Version of the provider"
+#~ msgstr "Nazwa dostawcy"
+
+#~ msgid "Description of the provider"
+#~ msgstr "Wersja dostawcy"
+
+#~ msgid "Name of the gettext domain for translations"
+#~ msgstr "Opis dostawcy"
+
+#~ msgid "Pathname of the directory with unit definitions"
+#~ msgstr "Nazwa domeny gettext dla tłumaczeń"
+
+#~ msgid "Pathname of the directory with job definitions"
+#~ msgstr "Ścieżka do katalogu z definicjami jednostek"
+
+#~ msgid "Pathname of the directory with whitelists definitions"
+#~ msgstr "Ścieżka do katalogu z definicjami zadań"
+
+#~ msgid "Pathname of the directory with provider data"
+#~ msgstr "Ścieżka do katalogu z planami testów"
+
+#~ msgid "Pathname of the directory with provider executables"
+#~ msgstr "Ścieżka do katalogu z danymi dostawcy"
+
+#~ msgid "Pathname of the directory with locale data"
+#~ msgstr "Ścieżka do katalogu z plikami wykonywalnymi dostawcy"
+
+#~ msgid "Problem in provider definition, field {!a}: {}"
+#~ msgstr "Ścieżka do katalogu z plikami tłumaczeń dostawcy"
+
+#~ msgid "Cannot find job with checksum {}"
+#~ msgstr "Problem w definicji dostawcy, pole {!a}: {}"
+
+#~ msgid "Syntax error in record generated from %s: %s"
+#~ msgstr "Nie można odnaleźć zadania testowego z sumą kontrolną {}"
+
+#~ msgid "Instantiating unit: %s"
+#~ msgstr ""
+
+#~ msgid "Security elevation mechanism for plainbox"
+#~ msgstr "Tworzenie jednostki z szablonu: %s"
+
+#~ msgid "return immediately, only useful when used with pkexec(1)"
+#~ msgstr "Mechanizm pozyskiwania dodatkowych uprawnień dla plainbox'a"
+
+#~ msgid "CHECKSUM"
+#~ msgstr "natychmiast zakończ działanie, użyteczne tylko w połączeniu z pkexec(1)"
+
+#~ msgid "run a job with this checksum"
+#~ msgstr "SUMA-KONTROLNA"
+
+#~ msgid "target job specification"
+#~ msgstr "uruchom zadanie z tą sumą kontrolną"
+
+#~ msgid "NAME=VALUE"
+#~ msgstr "specyfikacja zadania docelowego"
+
+#~ msgid "environment passed to the target job"
+#~ msgstr "NAZWA=WARTOŚĆ"
+
+#~ msgid "generator job specification"
+#~ msgstr "środowisko przekazane do zadania docelowego"
+
+#~ msgid "also run a job with this checksum (assuming it is a local job)"
+#~ msgstr "specyfikacja zadania generującego"
+
+#~ msgid "environment passed to the generator job"
+#~ msgstr ""
+
+#~ msgid "unset"
+#~ msgstr "środowisko przekazane do generatora zadań"
+
+#~ msgid "unsupported kind"
+#~ msgstr "nieustawiony"
+
+#~ msgid "Loading configuration from %s"
+#~ msgstr "nieobsługiwany rodzaj"
+
+#~ msgid "expected a boolean"
+#~ msgstr "Wczytywanie konfiguracji z %s"
+
+#~ msgid "expected an integer"
+#~ msgstr "oczekiwano wartości boolowskiej"
+
+#~ msgid "expected a floating point number"
+#~ msgstr "oczekiwano liczby całkowitej"
+
+#~ msgid "expected a string"
+#~ msgstr "oczekiwano liczby zmiennoprzecinkowej"
+
+#~ msgid "does not match pattern: {!r}"
+#~ msgstr "oczekiwano napisu"
+
+#~ msgid "must be one of {}"
+#~ msgstr "nie pasuje do wzorca: {!r}"
+
+#~ msgid "must be set to something"
+#~ msgstr "musi być jednym z {}"
+
+#~ msgid "cannot be empty"
+#~ msgstr "musi być ustawione na jakąś wartość"
+
+#~ msgid "{0} [--help] [--version] | [options] <command> ..."
+#~ msgstr "nie może być puste"
+
+#~ msgid "LOGGER"
+#~ msgstr "{0} [--help] [--version] | [opcje] <polecenie> ..."
+
+#~ msgid "file"
+#~ msgstr "STRUMIEŃ-DZIENNIKA"
+
+#~ msgid "valid values are: {}"
+#~ msgstr ""
+
+#~ msgid "invalid regular expression: {0}"
+#~ msgstr "poprawne wartości to: {}"
+
+#~ msgid "selector {!a} may not match any known or generated job"
+#~ msgstr "niewłaściwe wyrażenie regularne: {0}"
+
+#~ msgid "selector {!a} doesn't match any known or generated job"
+#~ msgstr "selektor {!a} może nie wybierać żadnych znanych lub generowanych zadań"
+
+#~ msgid "line {!r} is broken, expected four tokens"
+#~ msgstr "selektor {!a} nie wybiera żadnych znanych lub generowanych zadań"
+
+#~ msgid "line {!r} is broken, expected <apply> ... <to> ..."
+#~ msgstr "linia {!r} jest popsuta, oczekiwano czterech elementów"
+
+#~ msgid "please use only one line"
+#~ msgstr "linia {!r} jest popsuta, oczekiwano <apply> ... <to> ..."
+
+#~ msgid "please stay under 80 characters"
+#~ msgstr "proszę użyć co tylko jednej linii"
+
+#~ msgid "category"
+#~ msgstr "proszę używać nie więcej niż 80 znaków"
+
+#~ msgid "PURPOSE"
+#~ msgstr "kategoria"
+
+#~ msgid "STEPS"
+#~ msgstr "CEL"
+
+#~ msgid "VERIFICATION"
+#~ msgstr "KROKI"
+
+#~ msgid "record.origin must be a JobOutputTextSource"
+#~ msgstr "WERYFIKACJA"
+
+#~ msgid "record.origin.source.job must be this job"
+#~ msgstr "record.origin musi być JobOutputTextSource"
+
+#~ msgid "job"
+#~ msgstr "record.origin.source.job musi być tym zadaniem"
+
+#~ msgid "use 'id' and 'summary' instead of 'name'"
+#~ msgstr "zadanie"
+
+#~ msgid "please migrate to user-interact-verify"
+#~ msgstr ""
+
+#~ msgid "command is mandatory for non-manual jobs"
+#~ msgstr "proszę rozważyć migrację do zadań typu user-interact-verify"
+
+#~ msgid "command on a manual or qml job makes no sense"
+#~ msgstr "nie-ręczne zadania muszą mieć polecenie"
+
+#~ msgid "please use PLAINBOX_PROVIDER_DATA instead of CHECKBOX_SHARE"
+#~ msgstr ""
+
+#~ msgid "please use PLAINBOX_SESSION_SHARE instead of CHECKBOX_DATA"
+#~ msgstr "proszę używać PLAINBOX_PROVIDER_DATA zamiast CHECKBOX_SHARE"
+
+#~ msgid "user can only be 'root'"
+#~ msgstr ""
+
+#~ msgid "user without a command makes no sense"
+#~ msgstr "można tylko wybierać użytkownika 'root'"
+
+#~ msgid "environ without a command makes no sense"
+#~ msgstr "niestandardowy użytkownik bez żadnego polecenia nie ma sensu"
+
+#~ msgid "the referenced unit is not a job"
+#~ msgstr "niestandardowe środowisko beż żadnego polecenia nie ma sensu"
+
+#~ msgid "the referenced job is not a resource job"
+#~ msgstr "jednostka do której się odniesiono nie jest zadaniem"
+
+#~ msgid "only /bin/sh and /bin/bash are allowed"
+#~ msgstr "zadanie do którego się odniesiono nie jest zasobem"
+
+#~ msgid "the referenced unit is not a category"
+#~ msgstr "dozwolone są tylko powłoki /bin/sh i /bin/bash"
+
+#~ msgid "use the .qml extension for all QML files"
+#~ msgstr ""
+
+#~ msgid "please point to an existing QML file"
+#~ msgstr ""
+
+#~ msgid "reference to unknown parameter {!r}"
+#~ msgstr ""
+
+#~ msgid "clashes with {0} other unit"
+#~ msgstr "referencja do nieznanego parametru {!r}"
+
+#~ msgid "clashes with {0} other units"
+#~ msgstr "koliduje z {0} inną jednostką"
+
+#~ msgid "unit {!a} is not available"
+#~ msgstr "koliduje z {0} innymi jednostkami"
+
+#~ msgid "referee constraint failed"
+#~ msgstr "jednostka {!a} nie jest dostępna"
+
+#~ msgid "multiple units with id {!a}: {}"
+#~ msgstr "złamano ograniczenie na odniesiony obiekt"
+
+#~ msgid "{unit} {id!a}, field {field!a}, {message}"
+#~ msgstr "wiele jednostek posiada identyfikator {!a}: {}"
+
+#~ msgid "unit-with-id"
+#~ msgstr "{unit} {id!a}, pole {field!a}, {message}"
+
+#~ msgid "identifier cannot define a custom namespace"
+#~ msgstr "jednostka-z-identyfikatorem"
+
+#~ msgid "unable to instantiate template: {}"
+#~ msgstr "identyfikator nie może definiować własnej przestrzeni nazw"
+
+#~ msgid "template"
+#~ msgstr "ni można stworzyć instancji szablonu: {}"
+
+#~ msgid "template should explicitly define instantiated unit type"
+#~ msgstr "szablon"
+
+#~ msgid "at most one import statement is allowed"
+#~ msgstr "szablon powinien jawnie określać rodzaj tworzonych jednostek"
+
+#~ msgid "{}.Meta.fields[{!r}] is not a validator"
+#~ msgstr "można użyć tylko jednego polecenia importu"
+
+#~ msgid "{}.Meta.fields[{!r}][{}] is not a validator"
+#~ msgstr "{}.Meta.fields[{!r}] nie jest weryfikatorem"
+
+#~ msgid "unable to deduce message and no message provided"
+#~ msgstr "{}.Meta.fields[{!r}][{}] nie jest weryfikatorem"
+
+#~ msgid "field {field!a}, {message}"
+#~ msgstr "nie można wydedukować wiadomości a żadna nie została podana"
+
+#~ msgid "required field missing"
+#~ msgstr "pole {field!a}, {message}"
+
+#~ msgid "incorrect value supplied"
+#~ msgstr "brak wymaganego pola"
+
+#~ msgid "definition useless in this context"
+#~ msgstr "dostarczona wartość jest niepoprawna"
+
+#~ msgid "deprecated field used"
+#~ msgstr "w tym kontekście definicja jest bezużyteczna"
+
+#~ msgid "value must be variant (parametrized)"
+#~ msgstr "wykorzystanie przestarzałego pola"
+
+#~ msgid "value must be invariant (unparametrized)"
+#~ msgstr "wartość musi się zmieniać (musi posiadać parametr)"
+
+#~ msgid "field refers to unknown parameter"
+#~ msgstr "wartość nie może się zmieniać (nie może posiadać parametrów)"
+
+#~ msgid "field value is not unique"
+#~ msgstr "pole odnosi się do nieznanego parametru"
+
+#~ msgid "field should be marked as translatable"
+#~ msgstr "wartość pola nie jest unikatowa"
+
+#~ msgid "field should not be marked as translatable"
+#~ msgstr "pole powinno być oznaczone jako dostępne do tłumaczenia"
+
+#~ msgid "syntax error inside the field"
+#~ msgstr "pole nie powinno być oznaczone jako dostępne do tłumaczenia"
+
+#~ msgid "bad reference to another unit"
+#~ msgstr "błąd składniowy wewnątrz pola"
+
+#~ msgid "Please define 'name' in {}.Meta"
+#~ msgstr "zły odnośnik do innej jednostki"
+
+#~ msgid "unit should explicitly define its type"
+#~ msgstr "Proszę zdefiniować 'name' w {}.Meta"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job didn't run"
+#~ msgstr "jednostka powinna jawnie określić swój typ"
+
+#~ msgctxt "chart label"
+#~ msgid "not started"
+#~ msgstr "zadanie nie było uruchomione"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job passed"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "passed"
+#~ msgstr "zadanie zakończone powodzeniem"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job failed"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "failed"
+#~ msgstr "zadanie zakończone niepowodzeniem"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job skipped"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "skipped"
+#~ msgstr "zadanie pominięte"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job cannot be started"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "not supported"
+#~ msgstr "zadanie nie może zostać rozpoczęte"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job is not implemented"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "not implemented"
+#~ msgstr "zadanie nie jest zaimplementowane"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job needs verification"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "undecided"
+#~ msgstr "zadanie wymaga weryfikacji"
+
+#~ msgctxt "textual outcome"
+#~ msgid "job crashed"
+#~ msgstr ""
+
+#~ msgctxt "chart label"
+#~ msgid "crashed"
+#~ msgstr ""
+
+#~ msgid "Expensive DiskJobResult.io_log property access from %s:%d"
+#~ msgstr ""
+
+#~ msgid "Encoded %r into string %r"
+#~ msgstr "Kosztowna właściwość DiskJobResult.io_log użyta z %s:%d"
+
+#~ msgid "No valid options in option string"
+#~ msgstr "Zakodowano %r jako napis %r"
+
+#~ msgid "Unable to import {}: {}"
+#~ msgstr "W napisie opcji nie znaleziono poprawnych opcji"
+
+#~ msgid "Storing resource record %r: %s"
+#~ msgstr "Nie można zaimportować {}: {}"
+
+#~ msgid "Ignoring invalid instantiated unit %s: %s"
+#~ msgstr "Zachowywanie rekordu zasobu %r: %s"
+
+#~ msgid "Ignoring invalid generated job %s: %s"
+#~ msgstr "Ignorowanie błędnej instancji jednostki %s: %s"
+
+#~ msgid "processing output from a job: %r"
+#~ msgstr ""
+
+#~ msgid "local script %s returned invalid RFC822 data: %s"
+#~ msgstr "przetwarzanie wyjścia z zadania: %r"
+
+#~ msgid "Adding executable %s to nest %s"
+#~ msgstr "skrypt typu local %s zwrócił niewłaściwe dane RFC822: %s"
+
+#~ msgid "Unable to create symlink s%s -> %s: %r"
+#~ msgstr "Dodawanie pliku wykonywalnego %s do gniazda %s"
+
+#~ msgid "job[%s] executing %r with env %r in cwd %r"
+#~ msgstr "Nie można utworzyć dowiązania symbolicznego %s -> %s: %r"
+
+#~ msgid "Symlink nest for executables: %s"
+#~ msgstr "zadanie[%s] wykonywanie %r w środowisku %r w katalogu %r"
+
+#~ msgid "Job temporary current working directory: %s"
+#~ msgstr "Dowiązanie symboliczne dla pliku wykonywalnego: %s"
+
+#~ msgid "Generating job repr for job: %r"
+#~ msgstr "Tymczasowe katalog roboczy dla zadania: %s"
+
+#~ msgid "job[%s] executing %r withenv %r in cwd %r"
+#~ msgstr ""
+
+#~ msgid "Cannot check if plainbox-trusted-launcher-1 is available: %s"
+#~ msgstr ""
+
+#~ msgid "list and describe various objects"
+#~ msgstr "Nie można sprawdzić czy plainbox-trusted-launcher-1 jest dostępny: %s"
+
+#~ msgid "show object attributes"
+#~ msgstr "wymień i opisz różne obiekty"
+
+#~ msgid "list objects from the specified group"
+#~ msgstr "pokaż atrybuty obiektów"
+
+#~ msgid "session {0} app:{1}, flags:{2!r}, title:{3!r}"
+#~ msgstr "wymień obiekty należące do określonej grupy"
+
+#~ msgid "session {0} (not saved yet)"
+#~ msgstr "sesja {0} apk:{1}, flagi{2!r}, tytuł:{3!r}"
+
+#~ msgid "There are no stored sessions"
+#~ msgstr "sesja {0} (jeszcze nie zapisana)"
+
+#~ msgid "No such session"
+#~ msgstr "Nie ma zapisanych sesji"
+
+#~ msgid "Session removed"
+#~ msgstr "Nie ma takiej sesji"
+
+#~ msgid "location:"
+#~ msgstr "Sesja usunięta"
+
+#~ msgid "application ID: {0!r}"
+#~ msgstr "lokalizacja:"
+
+#~ msgid "application-specific blob: {0}"
+#~ msgstr "ID aplikacji: {0!r}"
+
+#~ msgid "session title: {0!r}"
+#~ msgstr "blob specyficzny dla aplikacji: {0}"
+
+#~ msgid "session flags: {0!r}"
+#~ msgstr "tytuł sesji: {0!r}"
+
+#~ msgid "current job ID: {0!r}"
+#~ msgstr "flagi sesji: {0!r}"
+
+#~ msgid "data size: {0}"
+#~ msgstr "ID aktualnego zadania: {0!r}"
+
+#~ msgid "Resuming session {0} ..."
+#~ msgstr "rozmiar danych: {0}"
+
+#~ msgid "Failed to resume session:"
+#~ msgstr "Wznawianie sesji {0} ..."
+
+#~ msgid "session resumed successfully"
+#~ msgstr "Nie udało się wznowić sesji:"
+
+#~ msgid "No such session: {0}"
+#~ msgstr "sesja wznowiona poprawnie"
+
+#~ msgid "Archiving session..."
+#~ msgstr "Nie ma takiej sesji: {0}"
+
+#~ msgid "Created archive: {0}"
+#~ msgstr "Archiwizowanie sesji..."
+
+#~ msgid "?"
+#~ msgstr "Utworzono archiwum: {0}"
+
+#~ msgid "Exporting session..."
+#~ msgstr "?"
+
+#~ msgid "Saving results to {}"
+#~ msgstr "Eksportowanie sesji..."
+
+#~ msgid "Available output formats: {}"
+#~ msgstr "Zapisywanie wyników do {}"
+
+#~ msgid "Each format may support a different set of options"
+#~ msgstr "Dostępne formaty wyjściowe: {}"
+
+#~ msgid "available session subcommands"
+#~ msgstr ""
+
+#~ msgid "list available sessions"
+#~ msgstr "dostępne pod-polecenia sesji"
+
+#~ msgid "print one id per line only"
+#~ msgstr "wypisz listę sesji"
+
+#~ msgid "remove one more more sessions"
+#~ msgstr ""
+
+#~ msgid "SESSION-ID"
+#~ msgstr "usuwa jedną lub więcej sesji"
+
+#~ msgid "Identifier of the session to remove"
+#~ msgstr "ID-SESJI"
+
+#~ msgid "show a single session"
+#~ msgstr "Identyfikator sesji do usunięcia"
+
+#~ msgid "Identifier of the session to show"
+#~ msgstr "pokaż jedną sesje"
+
+#~ msgid "resume the session (useful for debugging)"
+#~ msgstr "Identyfikator sesji do wyświetlenia"
+
+#~ msgid "FLAG"
+#~ msgstr "wznów sesję (przydatne do debugowania)"
+
+#~ msgid "pass this resume flag to the session resume code"
+#~ msgstr "FLAGA"
+
+#~ msgid "archive a single session"
+#~ msgstr "przekaż flagę do systemu wznawiania sesji"
+
+#~ msgid "Identifier of the session to archive"
+#~ msgstr "zarchiwizuj jedną sesję"
+
+#~ msgid "ARCHIVE"
+#~ msgstr "Identyfikator sesji do zarchiwizowania"
+
+#~ msgid "Name of the archive to create"
+#~ msgstr "ARCHIWUM"
+
+#~ msgid "export a single session"
+#~ msgstr "Nazwa archiwum do utworzenia"
+
+#~ msgid "Identifier of the session to export"
+#~ msgstr "wyeksportuj jedną sesję"
+
+#~ msgid "output options"
+#~ msgstr "Identyfikator sesji do wyeksportowania"
+
+#~ msgid "FORMAT"
+#~ msgstr "opcje wyjściowe"
+
+#~ msgid "OPTIONS"
+#~ msgstr "zapisz wyniki w wybranym FORMACIE (? wyświetla listę możliwości)"
+
+#~ msgid "FILE"
+#~ msgstr ""
+
+#~ msgid "save test results to the specified FILE (or to stdout if FILE is -)"
+#~ msgstr "PLIK"
+
+#~ msgid "Using whitelist %r obtained from provider %r"
+#~ msgstr ""
+
+#~ msgid "Unable to load whitelist %r: %s"
+#~ msgstr "Używanie planu testów %r uzyskanego z dostawcy %r"
+
+#~ msgid "There is no test plan: %s"
+#~ msgstr "Nie można wczytać planu testów %r: %s"
+
+#~ msgid "Incorrect pattern %r: %s"
+#~ msgstr "Nie ma planu testów: %s"
+
+#~ msgid "run unit and integration tests"
+#~ msgstr "Niewłaściwy wzorzec %r: %s"
+
+#~ msgid "abort the test on first failure"
+#~ msgstr "uruchom testy jednostkowe i testy integracji"
+
+#~ msgid "run tests quietly"
+#~ msgstr "przerwij testy po pierwszym problemie"
+
+#~ msgid "run tests with normal verbosity (default)"
+#~ msgstr "uruchom testy po cichu"
+
+#~ msgid "run tests verbosely, printing each test case name"
+#~ msgstr "uruchom testy z normalną głośnością (domyślnie)"
+
+#~ msgid "run integration test suite (this verifies checkbox jobs)"
+#~ msgstr "uruchom testy głośno, wypisując nazwę każdego testu"
+
+#~ msgid "run unit tests (this only verifies plainbox core)"
+#~ msgstr "uruchom testy integracji (to weryfikuje definicje zadań z checkbox'a)"
+
+#~ msgid "[Desired Job List]"
+#~ msgstr "uruchom testy jednostkowe (to weryfikuje jedynie jądro plainbox'a)"
+
+#~ msgid "[Run List]"
+#~ msgstr "[Pożądana lista zadań]"
+
+#~ msgid "[Running Local Jobs]"
+#~ msgstr "[Lista wykonania]"
+
+#~ msgid "Problem list"
+#~ msgstr "[Wykonywanie lokalnych zadań]"
+
+#~ msgid "[General Statistics]"
+#~ msgstr "Lista problemów"
+
+#~ msgid "Known jobs: {}"
+#~ msgstr "[Ogólne statystyki]"
+
+#~ msgid "Selected jobs: {}"
+#~ msgstr "Znane zadania: {}"
+
+#~ msgid "[Dependency Report]"
+#~ msgstr "Wybrane zadania: {}"
+
+#~ msgid "Selected jobs have no dependency problems"
+#~ msgstr "[Raport zależności]"
+
+#~ msgid "[Interactivity Report]"
+#~ msgstr "Wybrane zadania nie mają problemów zależności"
+
+#~ msgid "automatic"
+#~ msgstr "[Raport interaktywności]"
+
+#~ msgid "interactive"
+#~ msgstr "automatyczne"
+
+#~ msgid "unknown"
+#~ msgstr "interaktywne"
+
+#~ msgid "[Estimated Duration Report]"
+#~ msgstr "nieznane"
+
+#~ msgid "Estimated test duration:"
+#~ msgstr "[Raport o oszacowanym czasie trwania]"
+
+#~ msgid "automated tests: {}"
+#~ msgstr "Szacowany czas trwania testu:"
+
+#~ msgid "cannot estimate"
+#~ msgstr "testy zautomatyzowane: {}"
+
+#~ msgid "manual tests: {}"
+#~ msgstr "nie można oszacować"
+
+#~ msgid "total: {}"
+#~ msgstr "testy ręczne: {}"
+
+#~ msgid "[Validation Report]"
+#~ msgstr "w sumie: {}"
+
+#~ msgid "Job defined in {}"
+#~ msgstr "[Raport Weryfikacji]"
+
+#~ msgid "No problems found"
+#~ msgstr "Zadanie zdefiniowane w {}"
+
+#~ msgid "[Requirement Report]"
+#~ msgstr "Nie znaleziono problemów"
+
+#~ msgid "Configuration files:"
+#~ msgstr "[Raport zależności zasobów]"
+
+#~ msgid " - {0} (not present)"
+#~ msgstr "Pliki konfiguracyjne:"
+
+#~ msgid "Variables:"
+#~ msgstr " - {0} (brak)"
+
+#~ msgid "Sections:"
+#~ msgstr "Zmienne:"
+
+#~ msgid "Problems:"
+#~ msgstr "Sekcje:"
+
+#~ msgid " - variable {0}: {1}"
+#~ msgstr "Problemy:"
+
+#~ msgid "No validation problems found"
+#~ msgstr " - zmienna {0}: {1}"
+
+#~ msgid "check and display plainbox configuration"
+#~ msgstr "Nie znaleziono problemów weryfikacji"
+
+#~ msgid "special/internal commands"
+#~ msgstr "sprawdź i wyświetl konfigurację plainboxa"
+
+#~ msgid "list jobs instead of running them"
+#~ msgstr "polecenia specjalne i wewnętrzne"
+
+#~ msgid "list jobs with cheksums instead of running them"
+#~ msgstr "wypisz listę zadań zamiast je wykonać"
+
+#~ msgid "list all unique resource expressions"
+#~ msgstr ""
+
+#~ msgid "print a graph of jobs instead of running them"
+#~ msgstr "lista wszystkich unikatowych wyrażeń zasobów"
+
+#~ msgid "show resource relationships (for --dot)"
+#~ msgstr "wypisz graf zadań zamiast cokolwiek uruchamiać"
+
+#~ msgid "refusing to overwrite {!a}"
+#~ msgstr ""
+
+#~ msgid "development commands"
+#~ msgstr "odmowa nadpisania {!a}"
+
+#~ msgid "plainbox dev <subcommand> ..."
+#~ msgstr "polecenia dla programistów"
+
+#~ msgid "crashing as requested"
+#~ msgstr "plainbox dev <podkomenda> ..."
+
+#~ msgid "crash the application"
+#~ msgstr "wywalanie się, tak jak zażądano"
+
+#~ msgid "raise an exception"
+#~ msgstr "wywal aplikację"
+
+#~ msgid "hang the application with a busy loop"
+#~ msgstr "zgłoś wyjątek"
+
+#~ msgid "children"
+#~ msgstr "zawieś aplikacje w zajętej pętli"
+
+#~ msgid "a debug message"
+#~ msgstr "dzieci"
+
+#~ msgid "a info message"
+#~ msgstr "wiadomość do debugowania"
+
+#~ msgid "a warning message"
+#~ msgstr "informacja"
+
+#~ msgid "an error message"
+#~ msgstr "ostrzeżenie"
+
+#~ msgid "a critical message"
+#~ msgstr "błąd"
+
+#~ msgid "log messages at various levels"
+#~ msgstr "krytyczny błąd"
+
+#~ msgid "name"
+#~ msgstr ""
+
+#~ msgid "provider name, eg: YYYY.example.org:some-name"
+#~ msgstr "nazwa"
+
+#~ msgid "analyze how selected jobs would be executed"
+#~ msgstr "nazwa dostawcy, np: RRRR.example.org:jakaś-nazwa"
+
+#~ msgid "run all selected local jobs, required to see true data"
+#~ msgstr "zanalizuj jak wybrane zadania byłyby wykonane"
+
+#~ msgid "do not run local jobs"
+#~ msgstr ""
+
+#~ msgid "print general job statistics"
+#~ msgstr "nie uruchamiaj zadań typu 'local'"
+
+#~ msgid "print dependency report"
+#~ msgstr "wyświetl ogólne statystyki zadań"
+
+#~ msgid "print interactivity report"
+#~ msgstr "wyświetl raport o zależnościach"
+
+#~ msgid "print estimated duration report"
+#~ msgstr "wyświetl raport o interaktywności"
+
+#~ msgid "print validation report"
+#~ msgstr "wyświetl raport o szacowanym czasie trwania"
+
+#~ msgid "print requirement report"
+#~ msgstr "wyświetl raport weryfikacji"
+
+#~ msgid "when coupled with -v, only problematic jobs will be listed"
+#~ msgstr "wyświetl raport o zależnościach pomiędzy zasobami"
+
+#~ msgid "print desired job list"
+#~ msgstr "w połączeniu z -v wyświetla tylko problematyczne zadania"
+
+#~ msgid "print run list"
+#~ msgstr "wyświetl pożądaną listę zadań"
+
+#~ msgid "No supported devices detected?"
+#~ msgstr "wyświetl listę wykonania"
+
+#~ msgid "Unable to decode input stream, must be valid UTF-8"
+#~ msgstr "Nie wykryto wspieranych urządzeń?"
+
+#~ msgid "test selection options"
+#~ msgstr "Nie można zdekodować strumienia wejściowego, musi być poprawne UTF-8"
+
+#~ msgid "TEST-PLAN-ID"
+#~ msgstr "opcje wyboru testów"
+
+#~ msgid "load the specified test plan"
+#~ msgstr "ID-PLANU-TESTÓW"
+
+#~ msgid "PATTERN"
+#~ msgstr "wczytaj podany plan testów"
+
+#~ msgid "include jobs matching the given regular expression"
+#~ msgstr "WZORZEC"
+
+#~ msgid "exclude jobs matching the given regular expression"
+#~ msgstr "wybierz zadania dopasowane do podanego wrażenia regularnego"
+
+#~ msgid "WHITELIST"
+#~ msgstr "pomiń zadania dopasowane do podanego wrażenia regularnego"
+
+#~ msgid "load whitelist containing run patterns"
+#~ msgstr "PLAN-TESTÓW"
+
+#~ msgid "There is no job called {!a}"
+#~ msgstr "załaduj plan testów zawierający wzorce do wykonania"
+
+#~ msgid "See `plainbox special --list-jobs` for a list of choices"
+#~ msgstr "Nie ma zadania o nazwie {!a}"
+
+#~ msgid "Selected job does not have a command"
+#~ msgstr "Aby wyświetlić możliwe wybory uruchom `plainbox special --list-jobs`"
+
+#~ msgid "Leftover file detected: {!a}:"
+#~ msgstr "Wybrane zadanie nie posiada polecenia"
+
+#~ msgid "Leftover directory detected: {!a}"
+#~ msgstr "Wykryto pozostały plik: {!a}:"
+
+#~ msgid "Leftover thing detected: {!a}"
+#~ msgstr "Wykryto pozostały katalog: {!a}:"
+
+#~ msgid "job {} returned {}"
+#~ msgstr "Wykryto pozostałą rzecz: {!a}:"
+
+#~ msgid "command:"
+#~ msgstr "zadanie {} zwróciło {}"
+
+#~ msgid "Pick an action"
+#~ msgstr "polecenie:"
+
+#~ msgid "ID: {0}"
+#~ msgstr "Wybierz działanie"
+
+#~ msgid "Category: {0}"
+#~ msgstr "ID: {0}"
+
+#~ msgid "press ENTER to continue"
+#~ msgstr "Kategoria: {0}"
+
+#~ msgid "add a comment"
+#~ msgstr "Aby kontynuować naciśnij ENTER"
+
+#~ msgid "skip this job"
+#~ msgstr "dodaj komentarz"
+
+#~ msgid "save the session and quit"
+#~ msgstr "pomiń to zadanie"
+
+#~ msgid "Command output hidden"
+#~ msgstr "zapisz stan sesji i zakończ program"
+
+#~ msgid "Job cannot be started because:"
+#~ msgstr "Wyjście programu ukryte"
+
+#~ msgid "Outcome"
+#~ msgstr "Zadanie nie może zostać rozpoczęte gdyż:"
+
+#~ msgid "Waiting for the system to shut down or reboot..."
+#~ msgstr "Wynik"
+
+#~ msgid "Resume Incomplete Session"
+#~ msgstr ""
+
+#~ msgid "There is {0} incomplete session that might be resumed"
+#~ msgstr "Wznawianie niedokończonej sesji"
+
+#~ msgid "There are {0} incomplete sessions that might be resumed"
+#~ msgstr "Jest {0} niedokończona sesja która może być wznowiona"
+
+#~ msgid "resume this session"
+#~ msgstr "Są {0} niedokończone sesje które mogą być wznowione"
+
+#~ msgid "next session"
+#~ msgstr "wznów tę sesję"
+
+#~ msgid "create new session"
+#~ msgstr "następna sesja"
+
+#~ msgid "Do you want to resume session {0!a}?"
+#~ msgstr "utwórz nową sesję"
+
+#~ msgid "ignore this problem"
+#~ msgstr "Czy chcesz wznowić sesję {0!a}?"
+
+#~ msgid "erase this session"
+#~ msgstr "zignoruj problem"
+
+#~ msgid "Session not resumed"
+#~ msgstr "usuń tę sesję"
+
+#~ msgid "Available transports: {}"
+#~ msgstr "Nie wznowiono sesji"
+
+#~ msgid "Corrupted session %s: %s"
+#~ msgstr "Dostępne mechanizmy transportu: {}"
+
+#~ msgid "yes"
+#~ msgstr "Uszkodzona sesja %s: %s"
+
+#~ msgid "no"
+#~ msgstr "tak"
+
+#~ msgid "Do you want to start a new session?"
+#~ msgstr "nie"
+
+#~ msgid "Previous session run tried to execute job: {}"
+#~ msgstr "Czy chcesz rozpocząć nową sesję?"
+
+#~ msgid "skip that job"
+#~ msgstr "Poprzednia sesja próbowała wykonać zadanie: {}"
+
+#~ msgid "mark it as passed and continue"
+#~ msgstr "pomiń to zadanie"
+
+#~ msgid "mark it as failed and continue"
+#~ msgstr "oznacz jako udane i kontynuuj"
+
+#~ msgid "run it again"
+#~ msgstr "oznacz jako nieudane i kontynuuj"
+
+#~ msgid "What do you want to do with that job?"
+#~ msgstr "uruchom je ponownie"
+
+#~ msgid "Skipped after resuming execution"
+#~ msgstr "Co chcesz zrobić z tym zadaniem testowym?"
+
+#~ msgid "Passed after resuming execution"
+#~ msgstr "Ominięto po wznowieniu sesji"
+
+#~ msgid "Failed after resuming execution"
+#~ msgstr "Oznaczono jako udane po wznowieniu sesji"
+
+#~ msgid "The job database you are currently using is broken"
+#~ msgstr "Oznaczono jako nieudany po wznowieniu sesji"
+
+#~ msgid "At least two jobs contend for the id {0}"
+#~ msgstr ""
+
+#~ msgid "First job defined in: {0}"
+#~ msgstr "Co najmniej dwa zdania testowe konkurują o identyfikator {0}"
+
+#~ msgid "Second job defined in: {0}"
+#~ msgstr "Pierwsze zadanie zdefiniowano w: {0}"
+
+#~ msgid "This session cannot be resumed"
+#~ msgstr "Drugie zadanie zdefiniowano w: {0}"
+
+#~ msgid "Analyzing Jobs"
+#~ msgstr "Ta sesja nie może być wznowiona"
+
+#~ msgid "Authentication"
+#~ msgstr "Analizowanie zadań"
+
+#~ msgid "Running Selected Jobs"
+#~ msgstr "Autentykacja"
+
+#~ msgid "Please enter your comments:"
+#~ msgstr "Wykonywanie wybranych zadań"
+
+#~ msgid "Explicitly skipped before execution"
+#~ msgstr "Proszę podać komentarz:"
+
+#~ msgid "Results"
+#~ msgstr "Zadanie pominięte przed uruchomieniem"
+
+#~ msgid "Select an outcome or an action: "
+#~ msgstr "Wyniki"
+
+#~ msgid "set outcome to {0}"
+#~ msgstr "Proszę wybrać rezultat lub akcję: "
+
+#~ msgctxt "set outcome to <pass>"
+#~ msgid "pass"
+#~ msgstr "ustaw wynik na {0}"
+
+#~ msgctxt "set outcome to <fail>"
+#~ msgid "fail"
+#~ msgstr "powodzenie"
+
+#~ msgctxt "set outcome to <skip>"
+#~ msgid "skip"
+#~ msgstr "niepowodzenie"
+
+#~ msgid "re-run this job"
+#~ msgstr "pominięcie"
+
+#~ msgid "set suggested outcome [{0}]"
+#~ msgstr "uruchom ten test ponownie"
+
+#~ msgid "Please decide what to do next:"
+#~ msgstr "ustaw sugerowany wynik [{0}]"
+
+#~ msgid "outcome"
+#~ msgstr "Proszę podjąć decyzje co dalej:"
+
+#~ msgid "comments"
+#~ msgstr "wynik"
+
+#~ msgctxt "none comment"
+#~ msgid "none"
+#~ msgstr "komentarze"
+
+#~ msgid "Warning"
+#~ msgstr "żaden"
+
+#~ msgid "There were some problems with the selected jobs"
+#~ msgstr "Ostrzeżenie"
+
+#~ msgid "Problematic jobs will not be considered"
+#~ msgstr "Wystąpiły problemy z wybranymi zadaniami"
+
+#~ msgid "Session Statistics"
+#~ msgstr "Problematyczne zadania nie zostaną wzięte pod uwagę"
+
+#~ msgid "This session is about {0:.2f}% complete"
+#~ msgstr "Statystyki Sesji"
+
+#~ msgid "Estimated duration is {:.2f} for automated jobs."
+#~ msgstr "Ta sesja jest ukończona w około {0:.2f}%"
+
+#~ msgid "Estimated duration cannot be determined for automated jobs."
+#~ msgstr "Oszacowany czas trwania zadań zautomatyzowanych to {:.2f}."
+
+#~ msgid "Estimated duration is {:.2f} for manual jobs."
+#~ msgstr "Nie można oszacować czasu trwania zadań zautomatyzowanych."
+
+#~ msgid "Estimated duration cannot be determined for manual jobs."
+#~ msgstr "Oszacowany czas trwania zadań ręcznych to {:.2f}."
+
+#~ msgid "Size of the desired job list: {0}"
+#~ msgstr "Nie można oszacować czasu trwania zadań ręcznych."
+
+#~ msgid "Size of the effective execution plan: {0}"
+#~ msgstr "Rozmiar listy pożądanych zadań: {0}"
+
+#~ msgid "The following parsers are available:"
+#~ msgstr "Rozmiar wypadkowej listy zadań: {0}"
+
+#~ msgid "parse stdin with the specified parser"
+#~ msgstr "Dostępne są następujące parsery:"
+
+#~ msgid "Example: "
+#~ msgstr ""
+
+#~ msgid "PARSER-NAME"
+#~ msgstr "Na przykład: "
+
+#~ msgid "Name of the parser to use"
+#~ msgstr "NAZWA-PARSERA"
+
+#~ msgid "run a command from a job"
+#~ msgstr "Nazwa parsera który zostanie użyty"
+
+#~ msgid "JOB-ID"
+#~ msgstr "uruchom polecenie z zadania"
+
+#~ msgid "Id of the job to run"
+#~ msgstr "ID-ZADANIA"
+
+#~ msgid "run a test job"
+#~ msgstr "Identyfikator zadania do wykonania"
+
+#~ msgid "user interface options"
+#~ msgstr "uruchom zadania testowe"
+
+#~ msgid "skip tests that require interactivity"
+#~ msgstr "opcje interfejsu użytkownika"
+
+#~ msgid "don't really run most jobs"
+#~ msgstr "pomiń testy wymagające interaktywności"
+
+#~ msgid "don't suppress the output of certain job plugin types"
+#~ msgstr "tak na prawdę nie uruchamiaj większości zadań"
+
+#~ msgid "TRANSPORT"
+#~ msgstr "nie ukrywaj wyjścia pewnych rodzajów zadań"
+
+#~ msgid "use TRANSPORT to send results somewhere (pass ? for a list of choices)"
+#~ msgstr "TRANSPORT"
+
+#~ msgid "WHERE"
+#~ msgstr ""
+
+#~ msgid "where to send data using the selected transport"
+#~ msgstr "GDZIE"
+
+#~ msgid "io log generated %r"
+#~ msgstr ""
+
+#~ msgid "Running %r"
+#~ msgstr "wpis we/wy wygenerowany %r"
+
+#~ msgid "This type of job is not supported"
+#~ msgstr "Uruchamianie %r"
+
+#~ msgid "bad job plugin value"
+#~ msgstr "Ten rodzaj zadania testowego nie jest wspierany"
+
+#~ msgid "No suitable execution controller is available)"
+#~ msgstr "zła wartość pola plugin"
+
+#~ msgid "job[%s] starting qml shell: %s"
+#~ msgstr "Żaden odpowiedni kontroler wykonania nie jest dostępny)"
+
+#~ msgid "job[%s] shell return code: %r"
+#~ msgstr ""
+
+#~ msgid "Job skipped in dry-run mode"
+#~ msgstr ""
+
+#~ msgid "job[%s] extcmd delegate: %r"
+#~ msgstr "Zadanie testowe zostało pominięte w trybie działania na sucho"
+
+#~ msgid "job {0} has no command to run"
+#~ msgstr "zadanie[%s] delegat extcmd: %r"
+
+#~ msgid "job[%s] starting command: %s"
+#~ msgstr "zadanie {0} nie ma żadnego polecenia do wykonania"
+
+#~ msgid "job[%s] command return code: %r"
+#~ msgstr "zadanie[%s] uruchamianie polecenia: %s"
+
+#~ msgid "Job {0} created leftover filesystem artefacts in its working directory"
+#~ msgstr "zadanie[%s] kod zakończenia polecenia: %r"
+
+#~ msgid "Leftover file/directory: %r"
+#~ msgstr "Zadanie {0} pozostawiło po sobie pliki/katalogi w katalogu roboczym"
+
+#~ msgid "not installed"
+#~ msgstr ""
+
+#~ msgid "installation prefix"
+#~ msgstr "nie będzie instalowany"
+
+#~ msgid "installation directory layout (default: %(default)s)"
+#~ msgstr "przedrostek instalacji"
+
+#~ msgid "install everything relative to this alternate root directory"
+#~ msgstr "układ katalogów instalacji (domyślnie %(default)s)"
+
+#~ msgid "copying: %s => %s"
+#~ msgstr "instaluje wszystko względnie podanego alternatywnego katalogu głównego"
+
+#~ msgid "remove the generated .provider file"
+#~ msgstr ""
+
+#~ msgid "overwrite existing provider files"
+#~ msgstr "usuwa wygenerowany plik .provider"
+
+#~ msgid "directory to use (defaults to user's home provider path)"
+#~ msgstr "nadpisywanie istniejącego pliku dostawcy"
+
+#~ msgid "Removing provider file: %s"
+#~ msgstr "docelowy katalog (domyślnie w podkatalogu specyficznym dla użytkownika)"
+
+#~ msgid "Provider file already exists: {}"
+#~ msgstr "Usuwanie pliku dostawcy: %s"
+
+#~ msgid "Creating provider file: %s"
+#~ msgstr "Plik dostawcy już istnieje: {}"
+
+#~ msgid "[Provider MetaData]"
+#~ msgstr ""
+
+#~ msgid "name: {}"
+#~ msgstr "[Metadane dostawcy]"
+
+#~ msgid "namespace: {} (derived from name)"
+#~ msgstr "nazwa: {}"
+
+#~ msgid "description: {}"
+#~ msgstr "przestrzeń nazw: {} (pochodzi od nazwy)"
+
+#~ msgid "version: {}"
+#~ msgstr "opis: {}"
+
+#~ msgid "gettext domain: {}"
+#~ msgstr "wersja: {}"
+
+#~ msgid "[Job Definitions]"
+#~ msgstr "domena gettext: {}"
+
+#~ msgid "[Test Plans]"
+#~ msgstr "[Definicje zadań]"
+
+#~ msgid "[Test Plans] (legacy)"
+#~ msgstr "[Plany testów]"
+
+#~ msgid "{0} from {1}"
+#~ msgstr ""
+
+#~ msgid "[Other Units]"
+#~ msgstr ""
+
+#~ msgid "Some units could not be parsed correctly"
+#~ msgstr "[Inne jednostki]"
+
+#~ msgid "Please run `manage.py validate` for details"
+#~ msgstr "Nie można było przeparsować niektórych jednostek"
+
+#~ msgid "[Executables]"
+#~ msgstr "Proszę uruchomić `manage.py validate` aby zobaczyć szczegóły"
+
+#~ msgid "{0} {1}, role {2}"
+#~ msgstr "[Programy]"
+
+#~ msgid "{0} {1}, from {2}"
+#~ msgstr "{0} {1}, rola {2}"
+
+#~ msgid "validation options"
+#~ msgstr ""
+
+#~ msgid "Be strict about correctness"
+#~ msgstr "opcje weryfikacji poprawności"
+
+#~ msgid "Report deprecated syntax and features"
+#~ msgstr "Bądź rygorystyczny w sprawie poprawności"
+
+#~ msgid "Be loose about correctness"
+#~ msgstr "Informuj o przestarzałej składni"
+
+#~ msgid "Support deprecated syntax and features"
+#~ msgstr "Bądź luźny w sprawie poprawności"
+
+#~ msgid "Use the new validation subsystem"
+#~ msgstr "Wspieraj przestarzałą składnie"
+
+#~ msgid "missing definition of required field"
+#~ msgstr "Użyj nowego systemu weryfikacji"
+
+#~ msgid "useless field in this context"
+#~ msgstr "brakująca definicja wymaganego pola"
+
+#~ msgid "usage of deprecated field"
+#~ msgstr "bezużyteczna wartość pola w tym kontekście"
+
+#~ msgid "template field is constant"
+#~ msgstr "wykorzystanie przestarzałego pola"
+
+#~ msgid "template field is variable"
+#~ msgstr "pole szablonu jest stałe"
+
+#~ msgid "allowed values are: {0}"
+#~ msgstr "pole szablonu jest zmienne"
+
+#~ msgid "{0}: {1} {2!a}, field {3!a}: {4}"
+#~ msgstr "dozwolone wartości to: {0}"
+
+#~ msgid "The provider seems to be valid"
+#~ msgstr "{0}: {1} {2!a}, pole {3!a}: {4}"
+
+#~ msgid "NOTE: subsequent units from problematic files are ignored"
+#~ msgstr "Dostawca zdaje się być w porządku"
+
+#~ msgid "Loading provider..."
+#~ msgstr "UWAGA: późniejsze jednostki z problematycznych plików zostały pominięte"
+
+#~ msgid "Loading other providers..."
+#~ msgstr "Wczytywanie dostawcy..."
+
+#~ msgid "Validating everything..."
+#~ msgstr "Wczytywanie innych dostawców..."
+
+#~ msgid "NOTE: {0} advice was hidden"
+#~ msgstr "Weryfikowanie wszystkiego..."
+
+#~ msgid "NOTE: {0} advices where hidden"
+#~ msgstr "UWAGA: {0} porada została ukryta"
+
+#~ msgid "Run 'manage.py validate -N --strict --deprecated' for details"
+#~ msgstr "UWAGA: {0} porady zostały ukryte"
+
+#~ msgid "Validation of provider {0} has failed"
+#~ msgstr ""
+
+#~ msgid "Validating unit %s"
+#~ msgstr "Weryfikowanie dostawcy {0} nie powiodło się"
+
+#~ msgid "don't actually do anything"
+#~ msgstr ""
+
+#~ msgid "actions to perform"
+#~ msgstr "nic nie rób"
+
+#~ msgid "do not update the translation template"
+#~ msgstr "akcje do wykonania"
+
+#~ msgid "do not merge translation files with the template"
+#~ msgstr "nie aktualizuj szablonu tłumaczeń"
+
+#~ msgid "do not build binary translation files"
+#~ msgstr "nie łącz plików tłumaczeń z szablonem"
+
+#~ msgid "Per-provider management script"
+#~ msgstr "nie buduj binarnych katalogów tłumaczeń"
+
+#~ msgid "manage.py [--help] [--version] [options]"
+#~ msgstr "Skrypt zarządzający dostawcy"
+
+#~ msgid "{}: bad value of {!r}, {}"
+#~ msgstr "manage.py [--help] [--version] [opcje]"
+

@@ -1,0 +1,330 @@
+# Translations template for guacamole.
+# Copyright (C) 2015 Canonical Ltd.
+# This file is distributed under the same license as the guacamole project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: guacamole 0.8\n"
+"Report-Msgid-Bugs-To: me@zygoon.pl\n"
+"POT-Creation-Date: 2015-03-14 20:48+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+msgid "usage: "
+msgstr ""
+
+msgid ".__call__() not defined"
+msgstr ""
+
+#, python-format
+msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
+msgstr ""
+
+#, python-format
+msgid "argument \"-\" with mode %r"
+msgstr ""
+
+#, python-format
+msgid "can't open '%s': %s"
+msgstr ""
+
+#, python-format
+msgid "cannot merge actions - two groups are named %r"
+msgstr ""
+
+msgid "'required' is an invalid argument for positionals"
+msgstr ""
+
+#, python-format
+msgid ""
+"invalid option string %(option)r: must start with a character "
+"%(prefix_chars)r"
+msgstr ""
+
+#, python-format
+msgid "dest= is required for options like %r"
+msgstr ""
+
+#, python-format
+msgid "invalid conflict_resolution value: %r"
+msgstr ""
+
+#, python-format
+msgid "conflicting option string: %s"
+msgid_plural "conflicting option strings: %s"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "mutually exclusive arguments must be optional"
+msgstr ""
+
+msgid "positional arguments"
+msgstr ""
+
+msgid "optional arguments"
+msgstr ""
+
+msgid "show this help message and exit"
+msgstr ""
+
+msgid "show program's version number and exit"
+msgstr ""
+
+msgid "cannot have multiple subparser arguments"
+msgstr ""
+
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr ""
+
+#, python-format
+msgid "not allowed with argument %s"
+msgstr ""
+
+#, python-format
+msgid "ignored explicit argument %r"
+msgstr ""
+
+msgid "too few arguments"
+msgstr ""
+
+#, python-format
+msgid "argument %s is required"
+msgstr ""
+
+#, python-format
+msgid "one of the arguments %s is required"
+msgstr ""
+
+msgid "expected one argument"
+msgstr ""
+
+msgid "expected at most one argument"
+msgstr ""
+
+msgid "expected at least one argument"
+msgstr ""
+
+#, python-format
+msgid "expected %s argument"
+msgid_plural "expected %s arguments"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr ""
+
+#, python-format
+msgid "unexpected option string: %s"
+msgstr ""
+
+#, python-format
+msgid "%r is not callable"
+msgstr ""
+
+#, python-format
+msgid "invalid %(type)s value: %(value)r"
+msgstr ""
+
+#, python-format
+msgid "invalid choice: %(value)r (choose from %(choices)s)"
+msgstr ""
+
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr ""
+
+#, python-format
+msgid "the following arguments are required: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to create log directory: %s"
+msgstr ""
+
+#, python-format
+msgid "Reason: %s. All logs will go to console instead."
+msgstr ""
+
+#, python-format
+msgid "Enabled %r on root logger"
+msgstr ""
+
+#, python-format
+msgid "Enabled debugging on logger %r"
+msgstr ""
+
+msgid "Unable to find any of the executables {}"
+msgstr ""
+
+#, python-format
+msgid "Unable to prepare plugin %s: %s"
+msgstr ""
+
+msgid "discovery_time is meaningful after calling load()"
+msgstr ""
+
+#, python-format
+msgid "Unable to import %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to load %r: %s"
+msgstr ""
+
+#, python-format
+msgid "Loading everything in %r"
+msgstr ""
+
+#, python-format
+msgid "Loading %r"
+msgstr ""
+
+#, python-format
+msgid "Unable to load: %r"
+msgstr ""
+
+#, python-format
+msgid "Wrapping %r"
+msgstr ""
+
+#, python-format
+msgid "Importing %s"
+msgstr ""
+
+#, python-format
+msgid "Calling %r with %r"
+msgstr ""
+
+msgid "msgid"
+msgstr ""
+
+msgid "msgid1"
+msgid_plural "msgid2"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "msgctxt"
+msgid "msgid"
+msgstr ""
+
+#, python-format
+msgid "Constructed %r"
+msgstr ""
+
+msgid "Activated early logging via environment variables"
+msgstr ""
+
+msgid "Tool initialization (early mode)"
+msgstr ""
+
+msgid "Parsing command line arguments (early mode)"
+msgstr ""
+
+#, python-format
+msgid "Command line parsed to (early mode): %r"
+msgstr ""
+
+msgid "Tool initialization (late mode)"
+msgstr ""
+
+msgid "Parser construction"
+msgstr ""
+
+msgid "Parsing command line arguments"
+msgstr ""
+
+#, python-format
+msgid "Command line parsed to: %r"
+msgstr ""
+
+msgid "Tool initialization (final steps)"
+msgstr ""
+
+msgid "Tool initialization complete"
+msgstr ""
+
+msgid "Dispatching command..."
+msgstr ""
+
+msgid "logging and debugging options"
+msgstr ""
+
+#. TRANSLATORS: please keep --log-level=INFO untranslated
+msgid "be more verbose (same as --log-level=INFO)"
+msgstr ""
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "enable DEBUG messages on the root logger"
+msgstr ""
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "display DEBUG messages in the console"
+msgstr ""
+
+msgid "LOGGER-ID"
+msgstr ""
+
+#. TRANSLATORS: please keep DEBUG untranslated
+msgid "enable DEBUG messages on the specified logger (can be used multiple times)"
+msgstr ""
+
+msgid "debugging options"
+msgstr ""
+
+#. TRANSLATORS: please keep pdb untranslated
+msgid "jump into pdb when a command crashes"
+msgstr ""
+
+#. TRANSLATORS: please keep SIGINT/KeyboardInterrupt and --pdb
+#. untranslated
+msgid "crash on SIGINT/KeyboardInterrupt, useful with --pdb"
+msgstr ""
+
+#. TRANSLATORS: please keep SystemExit untranslated
+msgid "caught SystemExit, exiting"
+msgstr ""
+
+#, python-format
+msgid "caught %r, deciding on what to do next"
+msgstr ""
+
+#, python-format
+msgid "action for exception %r is %s"
+msgstr ""
+
+#, python-format
+msgid "Executable %r invoked with %r has crashed"
+msgstr ""
+
+#, python-format
+msgid "caught runaway exception: %r"
+msgstr ""
+
+msgid "starting debugger..."
+msgstr ""
+
+#, python-format
+msgid "Trying to load exactly the right command: %r"
+msgstr ""
+
+#, python-format
+msgid "Cost of registering guessed command: %f"
+msgstr ""
+
+#, python-format
+msgid "Cost of loading all top-level commands: %f"
+msgstr ""
+
+#, python-format
+msgid "Cost of registering all top-level commands: %f"
+msgstr ""
+

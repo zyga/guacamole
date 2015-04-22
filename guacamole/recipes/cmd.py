@@ -41,6 +41,7 @@ from guacamole.ingredients import cmdtree
 from guacamole.ingredients import crash
 from guacamole.ingredients import i18n
 from guacamole.ingredients import log
+from guacamole.ingredients import xdg
 from guacamole.recipes import Recipe
 
 
@@ -385,6 +386,7 @@ class CommandRecipe(Recipe):
         """Get a list of ingredients for guacamole."""
         return [
             ansi.ANSIIngredient(),
+            xdg.XDG(),
             log.LoggingIngredient(),
             cmdtree.CommandTreeIngredient(self.command),
             i18n.GettextIngredient(),

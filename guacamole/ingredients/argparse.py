@@ -32,31 +32,27 @@ class ParserIngredient(Ingredient):
 
     """Ingredient for using argparse to parse command line arguments."""
 
-    def __init__(self, command):
-        self.command = command
-
-    def added(self, context):
-        context.command = self.command
-
     def preparse(self, context):
         early_parser = argparse.ArgumentParser(add_help=False)
         early_parser.add_argument(
             "rest", nargs="...", help=argparse.SUPPRESS)
         early_parser.add_argument(
             "-h", "--help", action="store_const", const=None)
-        version = self.command.get_cmd_version()
+        cmd_name, cmd_obj, cmd_subcmds = context.cmd_tree
+        version = cmd_obj.get_cmd_version()
         if version is not None:
             early_parser.add_argument(
                 "--version", action="store_const", const=None)
         context.early_args = early_parser.parse_args(context.argv)
 
     def early_init(self, context):
+        cmd_name, cmd_obj, cmd_subcmds = context.cmd_tree
         parser = argparse.ArgumentParser(
-            prog=self.command.get_cmd_name(),
-            **self._get_parser_kwargs(self.command))
+            prog=cmd_name, **self._get_parser_kwargs(cmd_obj))
         parser.add_argument("-h", "--help", action="help")
-        self._maybe_add_version(parser, self.command)
-        context.max_level = self._add_command_to_parser(parser, self.command)
+        self._maybe_add_version(parser, cmd_obj)
+        context.max_level = self._add_command_to_parser(
+            parser, cmd_name, cmd_obj, cmd_subcmds)
         context.parser = parser
 
     def parse(self, context):
@@ -93,29 +89,27 @@ class ParserIngredient(Ingredient):
             # formatter_class=LegacyHelpFormatter,
         }
 
-    def _add_command_to_parser(self, parser, command, level=0):
+    def _add_command_to_parser(
+            self, parser, cmd_name, cmd_obj, cmd_subcmds, level=0
+    ):
         # Register this command
-        command.register_arguments(parser)
-        parser.set_defaults(**{'command{}'.format(level): command})
+        cmd_obj.register_arguments(parser)
+        parser.set_defaults(**{'command{}'.format(level): cmd_obj})
         # Register sub-commands of this command (recursively)
-        sub_commands = command.get_sub_commands()
-        if not sub_commands:
+        if not cmd_subcmds:
             return level
         subparsers = parser.add_subparsers(
             help="sub-command to pick")
         max_level = level
-        for name, sub_command in sub_commands:
-            if isinstance(sub_command, type):
-                sub_command = sub_command()
+        for subcmd_name, subcmd_obj, subcmd_cmds in cmd_subcmds:
             sub_parser = subparsers.add_parser(
-                name or sub_command.get_cmd_name(),
-                help=sub_command.get_cmd_help(),
-                **self._get_parser_kwargs(sub_command))
-            sub_parser.add_argument(
-                "-h", "--help", action="help")
+                subcmd_name, help=subcmd_obj.get_cmd_help(),
+                **self._get_parser_kwargs(subcmd_obj))
+            sub_parser.add_argument("-h", "--help", action="help")
             max_level = max(
                 max_level, self._add_command_to_parser(
-                    sub_parser, sub_command, level + 1))
+                    sub_parser, subcmd_name, subcmd_obj, subcmd_cmds,
+                    level + 1))
         return max_level
 
 

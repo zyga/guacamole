@@ -379,6 +379,6 @@ class CommandRecipe(Recipe):
         return [
             ansi.ANSIIngredient(),
             argparse.AutocompleteIngredient(),
-            argparse.ParserIngredient(self.command),
+            argparse.ParserIngredient(),
             crash.VerboseCrashIngredient(),
         ]

@@ -39,6 +39,7 @@ from guacamole.ingredients import ansi
 from guacamole.ingredients import argparse
 from guacamole.ingredients import cmdtree
 from guacamole.ingredients import crash
+from guacamole.ingredients import i18n
 from guacamole.recipes import Recipe
 
 
@@ -384,6 +385,7 @@ class CommandRecipe(Recipe):
         return [
             ansi.ANSIIngredient(),
             cmdtree.CommandTreeIngredient(self.command),
+            i18n.GettextIngredient(),
             argparse.AutocompleteIngredient(),
             argparse.ParserIngredient(),
             crash.VerboseCrashIngredient(),

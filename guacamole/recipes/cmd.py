@@ -335,7 +335,11 @@ class Command(object):
         Get a list of sub-commands of this command.
 
         :returns:
-            self.sub_commands, if defined
+            self.sub_commands, if defined. This is a sequence of pairs ``(name,
+            cls)`` where ``name`` is the name of the sub command and ``cls`` is
+            a command class (not an object). The ``name`` can be None if the
+            command has a version of :meth:`get_cmd_name()` that returns an
+            useful value.
         :returns:
             An empty tuple otherwise
 

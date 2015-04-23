@@ -420,7 +420,7 @@ class ANSIFormatter(object):
     available_colors = (
         str('black'), str('red'), str('green'), str('blue'), str('magenta'),
         str('cyan'), str('white'))
-        
+
     available_bright_colors = (
         str('bright_black'), str('bright_red'), str('bright_green'),
         str('bright_blue'), str('bright_magenta'), str('bright_cyan'),

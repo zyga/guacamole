@@ -431,6 +431,100 @@ class ANSIFormatter(object):
         'reverse', 'concealed', 'crossed'
     )
 
+    def aprint2(self, *values, **kwargs):
+        """
+        ANSI formatting-aware print().
+
+        This method is a version of print() (function) that understands
+        additional ansi control parameters.
+
+        :param value:
+            The values to print, same as with ``print()``
+        :param sep:
+            Separator between values, same as with ``print()``
+        :param end:
+            Terminator of the line, same as with ``print()``
+        :param file:
+            File to print to, same as with ``print()``
+        :param flush:
+            Flag that controls stream flush behavior, same as with ``print()``
+        :param fg:
+            Foreground color, same as with :meth:`__call__()`.
+        :param bg:
+            Background color, same as with :meth:`__call__()`.
+        :param style:
+            Text style, same as with :meth:`__call__()`.
+        :param reset:
+            Flag that controls if ANSI attributes are reset at the end, same as
+            with :meth:`__call__()`.
+        :param sgr:
+            Additonal (custom) Set Graphics Rendition directives, same as with
+            :meth:`__call__()`.
+
+        .. note::
+            This implementation is intended for Python 2
+        """
+        sep = kwargs.pop(str('sep'), ' ')
+        end = kwargs.pop(str('end'), '\n')
+        file = kwargs.pop(str('file'), sys.stdout)
+        flush = kwargs.pop(str('flush'), False)
+        fg = kwargs.pop(str('fg'), None)
+        bg = kwargs.pop(str('bg'), None)
+        style = kwargs.pop(str('style'), None)
+        reset = kwargs.pop(str('reset'), True)
+        sgr = kwargs
+        text = sep.join(str(value) for value in values)
+        text = self(text, fg, bg, style, reset, **sgr)
+        print(text, end=end, file=file)
+        if flush:
+            file.flush()
+
+    def aprint3(self, *values, **kwargs):
+        """
+        ANSI formatting-aware print().
+
+        This method is a version of print() (function) that understands
+        additional ansi control parameters.
+
+        :param value:
+            The values to print, same as with ``print()``
+        :param sep:
+            Separator between values, same as with ``print()``
+        :param end:
+            Terminator of the line, same as with ``print()``
+        :param file:
+            File to print to, same as with ``print()``
+        :param flush:
+            Flag that controls stream flush behavior, same as with ``print()``
+        :param fg:
+            Foreground color, same as with :meth:`__call__()`.
+        :param bg:
+            Background color, same as with :meth:`__call__()`.
+        :param style:
+            Text style, same as with :meth:`__call__()`.
+        :param reset:
+            Flag that controls if ANSI attributes are reset at the end, same as
+            with :meth:`__call__()`.
+        :param sgr:
+            Additonal (custom) Set Graphics Rendition directives, same as with
+            :meth:`__call__()`.
+
+        .. note::
+            This implementation only works on Python 3
+        """
+        sep = kwargs.pop('sep', ' ')
+        end = kwargs.pop('end', '\n')
+        file = kwargs.pop('file', sys.stdout)
+        flush = kwargs.pop('flush', False)
+        fg = kwargs.pop('fg', None)
+        bg = kwargs.pop('bg', None)
+        style = kwargs.pop('style', None)
+        reset = kwargs.pop('reset', True)
+        sgr = kwargs
+        text = sep.join(str(value) for value in values)
+        text = self(text, fg, bg, style, reset, **sgr)
+        print(text, end=end, file=file, flush=flush)
+
 
 class ANSIIngredient(Ingredient):
 
@@ -447,3 +541,7 @@ class ANSIIngredient(Ingredient):
             else:
                 colorama.init()
         context.ansi = ANSIFormatter(enable)
+        if sys.version_info[0] == 2:
+            context.aprint = context.ansi.aprint2
+        else:
+            context.aprint = context.ansi.aprint3

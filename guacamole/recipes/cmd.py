@@ -70,6 +70,10 @@ class Command(object):
     very liberally.
     """
 
+    def __repr__(self):
+        """Get the debugging representation of a command."""
+        return "<{}>".format(self.__class__.__name__)
+
     def invoked(self, context):
         """
         Callback called when the command gets invoked.

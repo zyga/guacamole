@@ -117,11 +117,17 @@ class Ingredient(object):
     def added(self, context):
         """Ingredient method called before anything else."""
 
+    def build_early_parser(self, context):
+        """Ingredient method called to build the early parser."""
+
     def preparse(self, context):
         """Ingredient method called to pre-parse command line aruments."""
 
     def early_init(self, context):
         """Ingredient method for early initialization."""
+
+    def build_parser(self, context):
+        """Ingredient method called to build the full parser."""
 
     def parse(self, context):
         """Ingredient method called to parse command line arguments."""
@@ -210,8 +216,10 @@ class Bowl(object):
         try:
             self.context.argv = argv
             self._added()
+            self._build_early_parser()
             self._preparse()
             self._early_init()
+            self._build_parser()
             self._parse()
             self._late_init()
         except KeyboardInterrupt:
@@ -242,6 +250,11 @@ class Bowl(object):
         for ingredient in self.ingredients:
             ingredient.added(self.context)
 
+    def _build_early_parser(self):
+        """Run build_early_parser() method on all ingredients."""
+        for ingredient in self.ingredients:
+            ingredient.build_early_parser(self.context)
+
     def _preparse(self):
         """Run the peparse() method on all ingredients."""
         for ingredient in self.ingredients:
@@ -251,6 +264,11 @@ class Bowl(object):
         """Run the early_init() method on all ingredients."""
         for ingredient in self.ingredients:
             ingredient.early_init(self.context)
+
+    def _build_parser(self):
+        """Run build_parser() method on all ingredients."""
+        for ingredient in self.ingredients:
+            ingredient.build_parser(self.context)
 
     def _parse(self):
         """Run the parse() method on all ingredients."""

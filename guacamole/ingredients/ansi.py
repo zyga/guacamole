@@ -20,8 +20,8 @@
 """
 Ingredients for using ANSI command sequences.
 
-On expressiong colors
----------------------
+On expressing colors
+--------------------
 
 Guacaomle supports several styles of colors:
 - named colors represented as strings:

@@ -20,6 +20,7 @@
 # along with Guacamole.  If not, see <http://www.gnu.org/licenses/>.
 """setup for guacamole."""
 
+import sys
 try:
     from setuptools import setup
 except ImportError:
@@ -44,6 +45,9 @@ setup(
     license="LGPLv3",
     zip_safe=True,
     keywords='argparse cli tool command sub-command subcommand',
+    tests_require=([
+        'unittest2' if sys.version_info[0] == 2 else 'unittest2py3k',
+        'mock'] if sys.version_info[:2] <= (3, 3) else None),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

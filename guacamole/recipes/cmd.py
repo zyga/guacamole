@@ -37,6 +37,7 @@ import logging
 
 from guacamole.ingredients import ansi
 from guacamole.ingredients import argparse
+from guacamole.ingredients import cmdtree
 from guacamole.ingredients import crash
 from guacamole.recipes import Recipe
 
@@ -386,7 +387,9 @@ class CommandRecipe(Recipe):
         """Get a list of ingredients for guacamole."""
         return [
             ansi.ANSIIngredient(),
+            cmdtree.CommandTreeBuilder(self.command),
+            cmdtree.CommandTreeDispatcher(),
             argparse.AutocompleteIngredient(),
-            argparse.ParserIngredient(self.command),
+            argparse.ParserIngredient(),
             crash.VerboseCrashIngredient(),
         ]

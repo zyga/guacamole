@@ -382,13 +382,13 @@ class Command(object):
             spices = set()
         return spices
 
-    def main(self, argv=None):
+    def main(self, argv=None, exit=True):
         """
         Shortcut for running a command.
 
-        See :meth:`guacamole.mix.Recipe.main()` for details.
+        See :meth:`guacamole.recipes.Recipe.main()` for details.
         """
-        return CommandRecipe(self).main(argv)
+        return CommandRecipe(self).main(argv, exit)
 
 
 def get_localized_docstring(obj, domain):

@@ -240,7 +240,7 @@ class Bowl(object):
             self._late_init()
         except KeyboardInterrupt:
             self._shutdown()
-            raise SystemExit(0)
+            return
         # The execution phase. Here we differentiate SystemExit from all other
         # exceptions. SystemExit is just re-raised as that's what any piece of
         # code can raise to ask to exit the currently running application.  All

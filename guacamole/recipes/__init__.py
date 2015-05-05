@@ -85,21 +85,49 @@ class Recipe(object):
         """
         return Bowl(self.get_ingredients())
 
-    def main(self, argv=None):
+    def main(self, argv=None, exit=True):
         """
         Shortcut to prepare a bowl of guacamole and eat it.
 
         :param argv:
             Command line arguments or None. None means that sys.argv is used
-        :return:
+        :param exit:
+            Raise SystemExit after finishing execution
+        :returns:
             Whatever is returned by the eating the guacamole.
+        :raises:
+            Whatever is raised by eating the guacamole.
+
+        .. note::
+            This method always either raises and exception or returns an
+            object. The way it behaves depends on the value of the `exit`
+            argument.
 
         This method can be used to quickly take a recipe, prepare the guacamole
         and eat it. It is named main as it is applicable as the main method of
         an application.
+
+        The `exit` argument controls if main returns normally or raises
+        SystemExit.  By default it will raise SystemExit (it will either wrap
+        the return value with SystemExit or re-raise the SystemExit exception
+        again). If SystemExit is raised but `exit` is False the argument to
+        SystemExit is unwrapped and returned instead.
         """
         bowl = self.prepare()
-        return bowl.eat(argv)
+        try:
+            retval = bowl.eat(argv)
+        except SystemExit as exc:
+            if exit:
+                raise
+            else:
+                return exc.args[0]
+        else:
+            if retval is None:
+                retval = 0
+            if exit:
+                raise SystemExit(retval)
+            else:
+                return retval
 
 
 class RecipeError(Exception):

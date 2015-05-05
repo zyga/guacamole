@@ -357,6 +357,31 @@ class Command(object):
         except AttributeError:
             return ()
 
+    def get_cmd_spices(self):
+        """
+        Get a list of spices requested by this command.
+
+        Feature flags are a mechanism that allows application developers to
+        control ingredients (switch them on or off) as well as to control how
+        some ingredients behave.
+
+        :returns:
+            ``self.spices``, if defined. This should be a set of strings.  Each
+            string represents as single flag. Ingredients should document the
+            set of flags they understand and use.
+        :returns:
+            An empty set otherwise
+
+        Some flags have a generic meaning, you can scope a flag to a given
+        ingredient using the ``name:`` prefix where the name is the name of the
+        ingredient.
+        """
+        try:
+            spices = self.spices
+        except AttributeError:
+            spices = set()
+        return spices
+
     def main(self, argv=None):
         """
         Shortcut for running a command.

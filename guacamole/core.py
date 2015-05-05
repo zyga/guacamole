@@ -195,7 +195,23 @@ class Bowl(object):
         self.ingredients = ingredients
         self.context = Context()
         self.context.bowl = self
-        self.context.flags = set()
+        self.context.spices = set()
+
+    def add_spice(self, spice):
+        """
+        Add a single spice the bowl.
+        """
+        self.context.spices.add(spice)
+
+    def has_spice(self, spice):
+        """
+        Check if a given spice is being used.
+
+        This method can be used to construct checks if an optional ingredient
+        feature should be enabled or not. Spices are simply strings that
+        describe optional features.
+        """
+        return spice in self.context.spices
 
     def eat(self, argv=None):
         """

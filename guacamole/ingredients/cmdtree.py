@@ -60,6 +60,10 @@ class CommandTreeBuilder(Ingredient):
         explained by the :func:`build_cmd_tree()` function.
         """
         context.cmd_tree = self._build_cmd_tree(self.command)
+        context.cmd_toplevel = context.cmd_tree[1]
+        # Collect spices from the top-level command
+        for spice in context.cmd_toplevel.get_cmd_spices():
+            context.bowl.add_spice(spice)
 
     def _build_cmd_tree(self, cmd_cls, cmd_name=None):
         """

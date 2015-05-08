@@ -431,7 +431,7 @@ class ANSIFormatter(object):
         'reverse', 'concealed', 'crossed'
     )
 
-    def aprint2(self, *values, **kwargs):
+    def _aprint2(self, *values, **kwargs):
         """
         ANSI formatting-aware print().
 
@@ -479,7 +479,7 @@ class ANSIFormatter(object):
         if flush:
             file.flush()
 
-    def aprint3(self, *values, **kwargs):
+    def _aprint3(self, *values, **kwargs):
         """
         ANSI formatting-aware print().
 
@@ -525,6 +525,11 @@ class ANSIFormatter(object):
         text = self(text, fg, bg, style, reset, **sgr)
         print(text, end=end, file=file, flush=flush)
 
+    if sys.version_info[0] == 2:
+        aprint = _aprint2
+    else:
+        aprint = _aprint3
+
 
 class ANSIIngredient(Ingredient):
 
@@ -550,3 +555,4 @@ class ANSIIngredient(Ingredient):
     def added(self, context):
         """Ingredient method called before anything else."""
         context.ansi = ANSIFormatter(self._enable)
+        context.aprint = context.ansi.aprint

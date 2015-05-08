@@ -530,9 +530,14 @@ class ANSIIngredient(Ingredient):
 
     """Ingredient for colorizing output."""
 
-    def added(self, context):
-        """Ingredient method called before anything else."""
-        enable = None  # auto-detect
+    def __init__(self, enable=None):
+        """
+        Initialize the ANSI ingredient.
+
+        :param enable:
+            Tri-state flag that controls if the embedded ANSI formatter
+            should be enabled. See :meth:`ANSI.__init__()`.
+        """
         if sys.platform == 'win32':
             try:
                 import colorama
@@ -540,8 +545,8 @@ class ANSIIngredient(Ingredient):
                 enable = False
             else:
                 colorama.init()
-        context.ansi = ANSIFormatter(enable)
-        if sys.version_info[0] == 2:
-            context.aprint = context.ansi.aprint2
-        else:
-            context.aprint = context.ansi.aprint3
+        self._enable = enable
+
+    def added(self, context):
+        """Ingredient method called before anything else."""
+        context.ansi = ANSIFormatter(self._enable)

@@ -17,36 +17,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with Guacamole.  If not, see <http://www.gnu.org/licenses/>.
 
-"""
-Ingredients for using ANSI command sequences.
-
-On expressing colors
---------------------
-
-Guacaomle supports several styles of colors:
-- named colors represented as strings:
-  - "black"
-  - "red"
-  - "green"
-  - "yellow"
-  - "blue"
-  - "magenta"
-  - "cyan"
-  - "white"
-- bright variant of named colors (not repeated)
-- indexed colors represented as an integer in range(256):
- - 0x00-0x07:  standard colors (as in ESC [ 30–37 m)
- - 0x08-0x0F:  high intensity colors (as in ESC [ 90–97 m)
- - 0x10-0xE7:  6 × 6 × 6 = 216 colors:
-     16 + 36 × r + 6 × g + b (0 ≤ r, g, b ≤ 5)
- - 0xE8-0xFF:  grayscale from black to white in 24 steps
-- RGB colors represented as (r, g, b) where each component is an integer in
-  range(256)
-
-.. note::
-    The actual colors behind the string-named colors vary between different
-    terminal emulators.
-"""
+"""Ingredients for using ANSI command sequences."""
 
 from __future__ import absolute_import, print_function, unicode_literals
 
@@ -60,39 +31,59 @@ class ANSI(object):
     """
     Numerous ANSI constants.
 
-    http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf
-    See page 61 (75th page of the PDF) for details.
+    .. seealso::
 
-    Summary of that is available on Wikipedia at
-    http://en.wikipedia.org/wiki/ANSI_escape_code
+        Original specification in the `Standard ECMA 48
+        <http://www.ecma-international.org/publications/
+        files/ECMA-ST/Ecma-048.pdf>`_, page 61 (75th page of
+        the PDF).
 
-    :attr cmd_erase_display:
+        Wikipedia article about `ANSI escape code
+        <http://en.wikipedia.org/wiki/ANSI_escape_code>`_.
+
+    .. attribute:: cmd_erase_display
         Command for erasing the whole display
-    :attr cmd_erase_line:
+
+    .. attribute:: cmd_erase_line
         Command for erasing the current line
-    :attr cmd_sgr_reset_all:
+
+    .. attribute:: cmd_sgr_reset_all:
         Command for resetting all SGR attributes
-    :attr sgr_reset_all:
+
+    .. attribute:: sgr_reset_all:
         SGR code for resetting all attributes
-    :attr sgr_bright:
-        SGR code that activates bright color subset
-    :attr sgr_bold:
-        Alternate spelling of ``sgr_bright``
-    :attr sgr_faint:
+
+    .. attribute:: sgr_bold:
+
+        Causes text to be rendered with bold face font or, alternatively,
+        to be rendered with bright color variant. This code is widely
+        supported on Linux. It is not supported on Windows.
+
+    .. attribute:: sgr_bright:
+        Alternate spelling of :attr:`sgr_bold`.
+
+    .. attribute:: sgr_faint:
         SGR code that activates faint color subset
-    :attr srg_dim:
+
+    .. attribute:: srg_dim:
         Alternate spelling of ``sgr_faint``
-    :attr srg_italic:
+
+    .. attribute:: srg_italic:
         SGR code that activates italic font face
-    :attr sgr_underline:
+
+    .. attribute:: sgr_underline:
         SGR code that activates underline mode
-    :attr sgr_blink_slow:
+
+    .. attribute:: sgr_blink_slow:
         SGR code that activates slow blinking of characters
-    :attr sgr_blink_fast:
+
+    .. attribute:: sgr_blink_fast:
         SGR code that activates fast blinking of characters
-    :attr sgr_reverse:
+
+    .. attribute:: sgr_reverse:
         SGR code that activates reverse-video mode
-    :attr sgr_double_underline:
+
+    .. attribute:: sgr_double_underline:
         SGR code that activates double-underline mode
     """
 
@@ -108,7 +99,8 @@ class ANSI(object):
     # SGR 0-9: text attribute control
 
     sgr_reset_all = '0'
-    sgr_bright = sgr_bold = '1'
+    sgr_bold = '1'
+    sgr_bright = '1'
     sgr_faint = sgr_dim = '2'
     sgr_italic = '3'
     sgr_underline = '4'
@@ -365,8 +357,8 @@ class ANSIFormatter(object):
     """
     Formatter for ANSI Set Graphics Rendition codes.
 
-    An instance of this class is inserted into the context object as ``ansi``.
-    Using the fact that ``ANSIFormatter`` is callable one can easily add
+    An instance of this class is inserted into the context object as `ansi`.
+    Using the fact that `ANSIFormatter` is callable one can easily add
     ANSI control sequences for foreground and background color as well as text
     attributes.
     """
@@ -376,8 +368,8 @@ class ANSIFormatter(object):
         Initialize an ANSI Formatter.
 
         :param enabled:
-            A tri-state that controls the formatter.  If ``enabled`` is True or
-            False then the obvious meaning is assumed. If ``enabled`` is None
+            A tri-state that controls the formatter.  If `enabled` is True or
+            False then the obvious meaning is assumed. If `enabled` is None
             then the effective value is computed using ``sys.stdout.isatty()``.
         """
         if enabled is None:

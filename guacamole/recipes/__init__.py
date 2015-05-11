@@ -25,24 +25,25 @@ plug-ins) for guacamole are called **ingredients**. The :class:`Ingredient`
 class contains a description of available add-on methods.
 
 Ingredients are somewhat similar to Django middleware as they can influence the
-execution of an application across its lifecycle. All of core guacamole
+execution of an application across its life-cycle. All of core guacamole
 features are implemented as ingredients. Developers are encouraged to read core
 ingredients to understand how to formulate their own design.
 
 Ingredient APIs are *public*. They will be maintained for backwards
-compatiblity. Since Guacamole doesn't automatically enable any third-party
+compatibility. Since Guacamole doesn't automatically enable any third-party
 ingredients, application developers that wish to use them need to use the
-:mod:`guacamole.mix` module to create their own guacamole out of available
+:mod:`guacamole.core` module to create their own guacamole out of available
 ingredients. Ingredient developers are recommended in documenting how to use
 each ingredient this way.
 
 In addition this module contains the public APIs for creating custom mixes of
-guacamole.  A custom mix begins with a :class:`guacamole.core.Bowl` with any
-number of :class:`guacamole.core.Ingredient` objects added.
+guacamole.  A custom mix begins with a :class:`~guacamole.core.Bowl` with any
+number of :class:`~guacamole.core.Ingredient` objects added.
 
-If you are familiar with the :class:`guacamole.cmd.Command` you should know
-that they are using the recipe system internally. They refer to pre-made
-recipes that put particular ingredients into the bowl for a ready dish.
+If you are familiar with the :class:`~guacamole.recipes.cmd.Command` class you
+should know that they are using the recipe system internally. They refer to
+pre-made recipes that put particular ingredients into the bowl for a ready
+dish.
 
 If you wish to build a custom experience on top of guacamole, please provide a
 new recipe class. Recipes are how applications should interact with any
@@ -55,8 +56,8 @@ from guacamole.core import Bowl
 
 
 __all__ = (
-    str('Recipe'),
-    str('RecipeError'),
+    'Recipe',
+    'RecipeError',
 )
 
 

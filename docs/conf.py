@@ -40,7 +40,27 @@ import guacamole
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode',
+              'sphinx.ext.doctest', 'sphinx.ext.intersphinx',
+              'sphinx.ext.todo']
+
+# Use the python documentation website by default
+py_intersphinx = 'https://docs.python.org/{}.{}'.format(
+    *sys.version_info[0:2])
+if sys.platform.startswith('linux'):
+    # On Linux, a pre-installed documentation will be used, if available
+    location_debian = '/usr/share/doc/python{}.{}/html/'.format(
+        *sys.version_info[0:2])
+    location_fedora3 = '/usr/share/doc/python-docs/html/'
+    location_fedora2 = '/usr/share/doc/python3-docs/html/'
+    for location in (location_debian, location_fedora2, location_fedora3):
+        if os.path.isfile(location):
+            py_intersphinx = 'file://{}'.format(location)
+            break
+
+intersphinx_mapping = {
+    'python': (py_intersphinx, None),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

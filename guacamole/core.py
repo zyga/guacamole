@@ -21,11 +21,7 @@
 The essence of guacamole.
 
 This module defines the three essential core classes: :class:`Ingredient`,
-class:`Bowl`, :class:`Context`. All of those have stable APIs.
-
-In practice you will not impor them from here though, consider using
-:mod:`guacamole.addon` as the base import module when working on new
-ingredients and :mod:`guacamole.mix` for creating custom recipes.
+:class:`Bowl`, :class:`Context`. All of those have stable APIs.
 """
 
 from __future__ import absolute_import, print_function, unicode_literals
@@ -34,9 +30,9 @@ import logging
 import sys
 
 __all__ = (
-    str('Bowl'),
-    str('Context'),
-    str('Ingredient'),
+    'Bowl',
+    'Context',
+    'Ingredient',
 )
 
 

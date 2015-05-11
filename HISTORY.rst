@@ -4,7 +4,17 @@
 History
 =======
 
-1.0 (YYYY-MM-DD)
+0.9 (2015-05-11)
+----------------
+
+* Vastly improved documentation
+* Bugfixes and changes based on early feedback
+* New cmdtree module with two ingredients (for instantiating commands and for
+  dispatching the invoked method)
+* Simplified argparse ingredient (for just handling parser)
+* Unit tests and doctests for some of the functionality
+
+0.8 (2015-04-21)
 ----------------
 
 * First release on PyPI.

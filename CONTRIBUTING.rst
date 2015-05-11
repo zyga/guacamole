@@ -112,4 +112,6 @@ Tips
 
 To run a subset of tests::
 
-    $ python -m unittest guacamole.tests
+    $ python -m unittest guacamole.test_core
+
+(Where guacamole.test_core is the module with tests you want to run)

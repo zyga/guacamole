@@ -1,5 +1,5 @@
-Welcome to Guacamole' documentation!
-=================================
+Guacamole
+=========
 
 Contents:
 
@@ -8,10 +8,12 @@ Contents:
 
    readme
    installation
-   usage
+   usage/index
+   ingredients/index
    contributing
    authors
    history
+   reference
 
 Indices and tables
 ==================

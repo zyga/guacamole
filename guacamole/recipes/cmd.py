@@ -43,7 +43,8 @@ from guacamole.recipes import Recipe
 
 
 __all__ = (
-    str('Command'),
+    'Command',
+    'CommandRecipe',
 )
 
 
@@ -167,7 +168,7 @@ class Command(object):
 
         .. note::
             If this method returns None then the executable name is guessed
-            from sys.argv[0].
+            from ``sys.argv[0]``.
         """
         try:
             return self.name
@@ -176,7 +177,7 @@ class Command(object):
 
     def get_cmd_version(self):
         """
-        Get the version reported by this executable
+        Get the version reported by this executable.
 
         .. note::
             If this method returns None then the ``--version`` option
@@ -192,7 +193,7 @@ class Command(object):
         Get the usage string associated with this command.
 
         :returns:
-            self.usage, if defined
+            ``self.usage``, if defined
         :returns:
             None, otherwise
 
@@ -213,10 +214,10 @@ class Command(object):
 
     def get_cmd_help(self):
         """
-        Get the single-line help of this command
+        Get the single-line help of this command.
 
         :returns:
-            self.help, if defined
+            ``self.help``, if defined
         :returns:
             The first line of the docstring, without the trailing dot, if
             present.
@@ -239,7 +240,7 @@ class Command(object):
         Get the leading, multi-line description of this command.
 
         :returns:
-            self.description, if defined
+            ``self.description``, if defined
         :returns:
             A substring of the class docstring between the first line (which
             is discarded) and the string ``@EPILOG@``, if present, or the end
@@ -274,7 +275,7 @@ class Command(object):
         Get the trailing, multi-line description of this command.
 
         :returns:
-            self.epilog, if defined
+            ``self.epilog``, if defined
         :returns:
             A substring of the class docstring between the string ``@EPILOG``
             and the end of the docstring, if defined
@@ -339,15 +340,15 @@ class Command(object):
         Get a list of sub-commands of this command.
 
         :returns:
-            self.sub_commands, if defined. This is a sequence of pairs ``(name,
-            cls)`` where ``name`` is the name of the sub command and ``cls`` is
-            a command class (not an object). The ``name`` can be None if the
-            command has a version of :meth:`get_cmd_name()` that returns an
-            useful value.
+            ``self.sub_commands``, if defined. This is a sequence of pairs
+            ``(name, cls)`` where ``name`` is the name of the sub command and
+            ``cls`` is a command class (not an object). The ``name`` can be
+            None if the command has a version of :meth:`get_cmd_name()` that
+            returns an useful value.
         :returns:
             An empty tuple otherwise
 
-        Applications can create hierarhical commands by defining the
+        Applications can create hierarchical commands by defining the
         ``sub_commands`` attribute. Many developers are familiar with nested
         commands, for example ``git commit`` is a sub-command of the ``git``
         command. All commands can be nested this way.
@@ -392,9 +393,7 @@ class Command(object):
 
 
 def get_localized_docstring(obj, domain):
-    """
-    Get a cleaned-up, localized copy of docstring of this class.
-    """
+    """Get a cleaned-up, localized copy of docstring of this class."""
     if obj.__class__.__doc__ is not None:
         return inspect.cleandoc(
             gettext.dgettext(domain, obj.__class__.__doc__))

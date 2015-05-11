@@ -21,6 +21,7 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+import collections
 import logging
 import types
 
@@ -28,6 +29,14 @@ from guacamole.core import Ingredient
 
 
 _logger = logging.getLogger("guacamole")
+
+#: A named tuple for representing the hierarchy of commands.
+#
+# The ``cmd_obj`` field is an instance of a Command class.
+# The ``cmd_name`` field is the effective name of the command.
+# The ``children`` field is a tuple of cmd_tree_node tuples.
+cmd_tree_node = collections.namedtuple(
+    'cmd_tree_node', 'cmd_name cmd_obj children')
 
 
 class CommandTreeBuilder(Ingredient):
@@ -60,7 +69,7 @@ class CommandTreeBuilder(Ingredient):
         explained by the :func:`build_cmd_tree()` function.
         """
         context.cmd_tree = self._build_cmd_tree(self.command)
-        context.cmd_toplevel = context.cmd_tree[1]
+        context.cmd_toplevel = context.cmd_tree.cmd_obj
         # Collect spices from the top-level command
         for spice in context.cmd_toplevel.get_cmd_spices():
             context.bowl.add_spice(spice)
@@ -112,7 +121,7 @@ class CommandTreeBuilder(Ingredient):
             cmd_obj = cmd_cls
         if cmd_name is None:
             cmd_name = cmd_obj.get_cmd_name()
-        return (cmd_name, cmd_obj, tuple([
+        return cmd_tree_node(cmd_name, cmd_obj, tuple([
             self._build_cmd_tree(subcmd_cls, subcmd_name)
             for subcmd_name, subcmd_cls in cmd_obj.get_sub_commands()]))
 

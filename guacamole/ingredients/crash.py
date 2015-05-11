@@ -26,7 +26,7 @@ import traceback
 from guacamole.core import Ingredient
 
 
-class VerboseCrashIngredient(Ingredient):
+class VerboseCrashHandler(Ingredient):
 
     """
     Ingredient for reacting to crashes with a traceback.

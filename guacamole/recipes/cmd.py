@@ -416,5 +416,5 @@ class CommandRecipe(Recipe):
             cmdtree.CommandTreeDispatcher(),
             argparse.AutocompleteIngredient(),
             argparse.ParserIngredient(),
-            crash.VerboseCrashIngredient(),
+            crash.VerboseCrashHandler(),
         ]

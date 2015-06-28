@@ -58,20 +58,21 @@ class ANSIDemo(Command):
         self._header("Foreground Color", ctx)
         self._sub_header("Regular and Bright Foreground Sets", ctx)
         # Regular
-        print(*[ctx.ansi('x' * (len(color) + 2), fg=color, bg='auto')
+        marker = '\u25AE'
+        print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto')
                 for color in ctx.ansi.available_colors])
         print(*[ctx.ansi(' {} '.format(color.upper()), fg=color, bg='auto')
                 for color in ctx.ansi.available_colors])
-        print(*[ctx.ansi('x' * (len(color) + 2), fg=color, bg='auto')
+        print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto')
                 for color in ctx.ansi.available_colors])
         # Bright
-        print(*[ctx.ansi('x' * (len(color) + 2),
+        print(*[ctx.ansi(marker * (len(color) + 2),
                          fg='bright_{}'.format(color), bg='auto')
                 for color in ctx.ansi.available_colors])
         print(*[ctx.ansi(' {} '.format(color.upper()),
                          fg='bright_{}'.format(color), bg='auto')
                 for color in ctx.ansi.available_colors])
-        print(*[ctx.ansi('x' * (len(color) + 2),
+        print(*[ctx.ansi(marker * (len(color) + 2),
                          fg='bright_{}'.format(color), bg='auto')
                 for color in ctx.ansi.available_colors])
 

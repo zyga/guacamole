@@ -289,7 +289,7 @@ def ansi_sgr(text, fg=None, bg=None, style=None, reset=True, **sgr):
 
     """
     # Ensure that text is really a string
-    text = str(text)
+    text = type("")(text)
     # NOTE: SGR stands for "set graphics rendition"
     sgr_list = []  # List of SGR codes
     # Load SGR code associated with desired foreground color

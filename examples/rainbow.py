@@ -35,6 +35,8 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+import os
+
 from guacamole import Command
 
 
@@ -80,11 +82,14 @@ class ANSIDemo(Command):
             '--no-headers', action='store_false', dest='headers', default=True)
 
     def _demo_fg_color(self, ctx):
+        if os.getenv('TERM') == 'linux':
+            marker = 'x'
+        else:
+            marker = '\u25AE'
         if ctx.args.headers:
             self._header("Foreground Color", ctx)
             self._sub_header("Regular Set", ctx)
         # Regular
-        marker = '\u25AE'
         print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto')
                 for color in ctx.ansi.available_colors])
         print(*[ctx.ansi(' {} '.format(color.upper()), fg=color, bg='auto')

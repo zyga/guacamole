@@ -47,16 +47,42 @@ class ANSIDemo(Command):
         if not ctx.ansi.is_enabled:
             print("You need color support to use this demo")
         else:
-            print(ctx.ansi.cmd('erase_display'))
-            self._demo_fg_color(ctx)
-            self._demo_bg_color(ctx)
-            self._demo_bg_indexed(ctx)
-            self._demo_rgb(ctx)
-            self._demo_style(ctx)
+            if ctx.args.clear:
+                print(ctx.ansi.cmd('erase_display'))
+            if ctx.args.fg_color:
+                self._demo_fg_color(ctx)
+            if ctx.args.bg_color:
+                self._demo_bg_color(ctx)
+            if ctx.args.bg_indexed:
+                self._demo_bg_indexed(ctx)
+            if ctx.args.rainbow:
+                self._demo_rgb(ctx)
+            if ctx.args.style:
+                self._demo_style(ctx)
+
+    def register_arguments(self, parser):
+        parser.add_argument(
+            '--no-clear', action='store_false', dest='clear', default=True)
+        parser.add_argument(
+            '--no-fg-color', action='store_false', dest='fg_color',
+            default=True)
+        parser.add_argument(
+            '--no-bg-color', action='store_false', dest='bg_color',
+            default=True)
+        parser.add_argument(
+            '--no-bg-indexed', action='store_false', dest='bg_indexed',
+            default=True)
+        parser.add_argument(
+            '--no-rainbow', action='store_false', dest='rainbow', default=True)
+        parser.add_argument(
+            '--no-style', action='store_false', dest='style', default=True)
+        parser.add_argument(
+            '--no-headers', action='store_false', dest='headers', default=True)
 
     def _demo_fg_color(self, ctx):
-        self._header("Foreground Color", ctx)
-        self._sub_header("Regular and Bright Foreground Sets", ctx)
+        if ctx.args.headers:
+            self._header("Foreground Color", ctx)
+            self._sub_header("Regular Set", ctx)
         # Regular
         marker = '\u25AE'
         print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto')
@@ -65,7 +91,9 @@ class ANSIDemo(Command):
                 for color in ctx.ansi.available_colors])
         print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto')
                 for color in ctx.ansi.available_colors])
-        # Bright
+        # Bright (via extensions)
+        if ctx.args.headers:
+            self._sub_header("Bright Set (using extended codes)", ctx)
         print(*[ctx.ansi(marker * (len(color) + 2),
                          fg='bright_{}'.format(color), bg='auto')
                 for color in ctx.ansi.available_colors])
@@ -75,10 +103,19 @@ class ANSIDemo(Command):
         print(*[ctx.ansi(marker * (len(color) + 2),
                          fg='bright_{}'.format(color), bg='auto')
                 for color in ctx.ansi.available_colors])
+        if ctx.args.headers:
+            self._sub_header("Bright Set (using bold)", ctx)
+        print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto', bold=1)
+                for color in ctx.ansi.available_colors])
+        print(*[ctx.ansi(' {} '.format(color.upper()), fg=color, bg='auto', bold=1)
+                for color in ctx.ansi.available_colors])
+        print(*[ctx.ansi(marker * (len(color) + 2), fg=color, bg='auto', bold=1)
+                for color in ctx.ansi.available_colors])
 
     def _demo_bg_color(self, ctx):
-        self._header("Background Color", ctx)
-        self._sub_header("Regular and Bright Background Sets", ctx)
+        if ctx.args.headers:
+            self._header("Background Color", ctx)
+            self._sub_header("Regular and Bright Background Sets", ctx)
         # Regular
         print(*[ctx.ansi(' ' * (len(color) + 2), bg=color)
                 for color in ctx.ansi.available_colors])
@@ -96,8 +133,9 @@ class ANSIDemo(Command):
                 for color in ctx.ansi.available_colors])
 
     def _demo_bg_indexed(self, ctx):
-        self._header("Indexed 8-bit Background Color", ctx)
-        self._sub_header("Regular and Bright Color Subsets", ctx)
+        if ctx.args.headers:
+            self._header("Indexed 8-bit Background Color", ctx)
+            self._sub_header("Regular and Bright Color Subsets", ctx)
         print(*(
             [ctx.ansi(' ' * 4, bg=i) for i in range(0x00, 0x07 + 1)]
             + [ctx.ansi(' ' * 4, bg=i) for i in range(0x08, 0x0F + 1)]))
@@ -109,7 +147,8 @@ class ANSIDemo(Command):
         print(*(
             [ctx.ansi(' ' * 4, bg=i) for i in range(0x00, 0x07 + 1)]
             + [ctx.ansi(' ' * 4, bg=i) for i in range(0x08, 0x0F + 1)]))
-        self._sub_header("6 * 6 * 6 RGB color subset", ctx)
+        if ctx.args.headers:
+            self._sub_header("6 * 6 * 6 RGB color subset", ctx)
         for y in range(6 * 3):
             print(*(
                 [' ' * 5]
@@ -118,7 +157,8 @@ class ANSIDemo(Command):
                 + [' ' * 6]
                 + [ctx.ansi('{:02X}'.format(i).center(4), fg='auto', bg=i)
                     for i in range(0x7c + 6 * y, 0x7c + 6 * y + 6)]))
-        self._sub_header("24 grayscale colors", ctx)
+        if ctx.args.headers:
+            self._sub_header("24 grayscale colors", ctx)
         print(
             '    ', *[ctx.ansi(' ' * 6, bg=i)
                       for i in range(0xE8, 0xF3 + 1)], sep='')
@@ -139,15 +179,18 @@ class ANSIDemo(Command):
                       for i in range(0xF4, 0xFF + 1)], sep='')
 
     def _demo_rgb(self, ctx):
-        self._header("24 bit RGB Color", ctx)
-        self._sub_header("The bar below only displays 80 unique colors", ctx)
+        if ctx.args.headers:
+            self._header("24 bit RGB Color", ctx)
+            self._sub_header(
+                "The bar below only displays 80 unique colors", ctx)
         cols = 80
         for y in range(3):
             print(*[ctx.ansi(' ', fg='auto', bg=hsv(360.0 / cols * i, 1, 1))
                     for i in range(cols)], sep='')
 
     def _demo_style(self, ctx):
-        self._header("Text style", ctx)
+        if ctx.args.headers:
+            self._header("Text style", ctx)
         styles = ctx.ansi.available_styles
         print(*[ctx.ansi(style, style=style) for style in styles])
 

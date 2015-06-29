@@ -363,7 +363,7 @@ class ANSIFormatter(object):
     attributes.
     """
 
-    def __init__(self, enabled=None):
+    def __init__(self, enabled=None, color_ctrl=None):
         """
         Initialize an ANSI Formatter.
 
@@ -375,6 +375,7 @@ class ANSIFormatter(object):
         if enabled is None:
             enabled = sys.stdout.isatty()
         self._enabled = enabled
+        self._color_ctrl = color_ctrl
 
     @property
     def is_enabled(self):
@@ -400,11 +401,15 @@ class ANSIFormatter(object):
         If the formatter is enabled this is a pass-through to
         :func:`ansi_sgr()`. Otherwise this is a no-op that returns ``text``.
         """
-        if fg == 'auto' and bg is not None:
-            fg = get_visible_color(bg)
-        elif bg == 'auto' and fg is not None:
-            bg = get_visible_color(fg)
         if self._enabled:
+            if fg == 'auto' and bg is not None:
+                fg = get_visible_color(bg)
+            elif bg == 'auto' and fg is not None:
+                bg = get_visible_color(fg)
+            # Hook into the color controller to apply color transformations
+            if self._color_ctrl:
+                fg = self._color_ctrl.adjust(fg)
+                bg = self._color_ctrl.adjust(bg)
             return ansi_sgr(text, fg, bg, style, reset, **sgr)
         else:
             return text
@@ -550,5 +555,5 @@ class ANSIIngredient(Ingredient):
 
     def added(self, context):
         """Ingredient method called before anything else."""
-        context.ansi = ANSIFormatter(self._enable)
+        context.ansi = ANSIFormatter(self._enable, context.color_ctrl)
         context.aprint = context.ansi.aprint

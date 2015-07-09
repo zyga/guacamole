@@ -181,7 +181,9 @@ class ParserIngredient(Ingredient):
         if not cmd_subcmds:
             return level
         subparsers = parser.add_subparsers(
+            dest='sub_command',
             help="sub-command to pick")
+        subparsers.required = True
         max_level = level
         for subcmd_name, subcmd_obj, subcmd_cmds in cmd_subcmds:
             sub_parser = subparsers.add_parser(

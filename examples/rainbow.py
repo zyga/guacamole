@@ -44,6 +44,8 @@ class ANSIDemo(Command):
 
     """Demonstration of ANSI SGR codes."""
 
+    spices = ["color:arguments"]
+
     def invoked(self, ctx):
         """Method called when the command is invoked."""
         if not ctx.ansi.is_enabled:

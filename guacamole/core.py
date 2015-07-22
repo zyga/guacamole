@@ -313,3 +313,10 @@ class Bowl(object):
         """Run the shutdown() method on all ingredients."""
         for ingredient in self.ingredients:
             ingredient.shutdown(self.context)
+
+
+class DeveloperError(Exception):
+    """Exception raised when the programmer makes a mistake."""
+
+    def __init__(self, msg):
+        super(DeveloperError,

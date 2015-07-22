@@ -24,6 +24,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import unittest
 
 from guacamole.core import Bowl
+from guacamole.core import DeveloperError
 
 
 class TestBowl(unittest.TestCase):
@@ -39,3 +40,20 @@ class TestBowl(unittest.TestCase):
         self.assertFalse(self.bowl.has_spice("salt"))
         self.bowl.add_spice('salt')
         self.assertTrue(self.bowl.has_spice("salt"))
+
+
+
+class DeveloperErrorTests(unittest.TestCase):
+
+    class test_friendly_advice(self):
+        self.assertEqual(
+            str(DevelopeError("Use the force Luke!", 0x0001),
+            "Developer Error: 0x0001 Use the force Luke!\n"
+            "\n"
+            "This is a 'DeveloperError', we didn't mean to cause confusion\n"
+            "we tried to make the APIs as clear as possible but we've failed\n"
+            "We've assumed you'll do something else, the assumption didn't\n"
+            "hold so we're here now.\n"
+            "\n"
+            "You can google for soltuions this isssue: "
+        )

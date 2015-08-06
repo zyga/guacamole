@@ -25,7 +25,7 @@ Guacamole comes with built-in support for writing command line applications
 that integrate well with the running system. A short list of supported features
 (ingredients) includes:
 
-    - handling flat and hierarhical commands
+    - handling flat and hierarchical commands
     - hassle-free crash detection
     - hassle-free logging
     - internationalization and localization
@@ -35,7 +35,7 @@ add-on developer guide for details.
 
 .. note::
     Guacamole supports Python 2.7 and Python 3.2, 3.4 and 3.5. Other versions
-    are not tested extensively. Versions ealier than 2.7 are not supported and
+    are not tested extensively. Versions earlier than 2.7 are not supported and
     won't be. Applications that still need to support the end-of-life Python
     2.x release series are encouraged to update to Python 2.7.
 
@@ -50,4 +50,4 @@ from guacamole.recipes.cmd import Command
 
 __all__ = ('Command',)
 
-__version__ = '0.9'
+__version__ = '0.9.1'

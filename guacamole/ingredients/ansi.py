@@ -458,7 +458,7 @@ class ANSIFormatter(object):
         """
         sep = kwargs.pop(str('sep'), ' ')
         end = kwargs.pop(str('end'), '\n')
-        file = kwargs.pop(str('file'), sys.stdout)
+        file = kwargs.pop(str('file')) or sys.stdout
         flush = kwargs.pop(str('flush'), False)
         fg = kwargs.pop(str('fg'), None)
         bg = kwargs.pop(str('bg'), None)
@@ -506,7 +506,7 @@ class ANSIFormatter(object):
         """
         sep = kwargs.pop('sep', ' ')
         end = kwargs.pop('end', '\n')
-        file = kwargs.pop('file', sys.stdout)
+        file = kwargs.pop('file') or sys.stdout
         flush = kwargs.pop('flush', False)
         fg = kwargs.pop('fg', None)
         bg = kwargs.pop('bg', None)
@@ -515,7 +515,11 @@ class ANSIFormatter(object):
         sgr = kwargs
         text = sep.join(str(value) for value in values)
         text = self(text, fg, bg, style, reset, **sgr)
-        print(text, end=end, file=file, flush=flush)
+        print(text, end=end, file=file)
+        # NOTE: Don't use print(..., flush=flush) as that doesn't work on
+        # Python 3.2. This was https://github.com/zyga/guacamole/issues/9
+        if flush:
+            file.flush()
 
     if sys.version_info[0] == 2:
         aprint = _aprint2

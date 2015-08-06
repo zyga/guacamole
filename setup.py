@@ -33,7 +33,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='guacamole',
-    version='0.9',
+    version='0.9.1',
     description='Guacamole is an command line tool library for Python',
     long_description=readme + '\n\n' + history,
     author='Zygmunt Krynicki',
@@ -46,8 +46,16 @@ setup(
     zip_safe=True,
     keywords='argparse cli tool command sub-command subcommand',
     tests_require=([
+        # XXX: we don't depend on funcsigs but apparently mocks does without
+        # properly declaring it. When I run ./setup.py test on Python 2.7 I get
+        # an import error on mock, failing to import funcsigs. Oddly enough
+        # explicitly installing mock installs funcsigs.
+        #
+        # If this doesn't happen later, feel free to remove funcsigs.
+        'funcsigs',
+        'mock',
         'unittest2' if sys.version_info[0] == 2 else 'unittest2py3k',
-        'mock'] if sys.version_info[:2] <= (3, 3) else None),
+    ] if sys.version_info[:2] <= (3, 3) else None),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

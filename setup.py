@@ -33,7 +33,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='guacamole',
-    version='0.9',
+    version='0.9.1',
     description='Guacamole is an command line tool library for Python',
     long_description=readme + '\n\n' + history,
     author='Zygmunt Krynicki',

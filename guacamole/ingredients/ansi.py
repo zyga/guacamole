@@ -458,7 +458,7 @@ class ANSIFormatter(object):
         """
         sep = kwargs.pop(str('sep'), ' ')
         end = kwargs.pop(str('end'), '\n')
-        file = kwargs.pop(str('file')) or sys.stdout
+        file = kwargs.pop(str('file'), None) or sys.stdout
         flush = kwargs.pop(str('flush'), False)
         fg = kwargs.pop(str('fg'), None)
         bg = kwargs.pop(str('bg'), None)
@@ -506,7 +506,7 @@ class ANSIFormatter(object):
         """
         sep = kwargs.pop('sep', ' ')
         end = kwargs.pop('end', '\n')
-        file = kwargs.pop('file') or sys.stdout
+        file = kwargs.pop('file', None) or sys.stdout
         flush = kwargs.pop('flush', False)
         fg = kwargs.pop('fg', None)
         bg = kwargs.pop('bg', None)

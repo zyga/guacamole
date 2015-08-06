@@ -79,7 +79,7 @@ You can use the ``fg`` and ``bg`` keyword arguments to control the
 
 .. doctest::
 
-    >>> ctx.ansi('red on blue', fg='red', bg='blue')
+    >>> str(ctx.ansi('red on blue', fg='red', bg='blue'))
     '\x1b[31;44mred on blue\x1b[0m'
 
 You can use keyword arguments that correspond to *each* of the countless
@@ -89,7 +89,7 @@ using the :attr:`~guacamole.ingredients.ansi.ANSI.sgr_bold` code.
 
 .. doctest::
 
-    >>> ctx.ansi('bold text', bold=1)
+    >>> str(ctx.ansi('bold text', bold=1))
     '\x1b[1mbold text\x1b[0m'
 
 In some cases you may want to use different code knowing that the output will

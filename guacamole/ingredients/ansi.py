@@ -408,8 +408,8 @@ class ANSIFormatter(object):
                 bg = get_visible_color(fg)
             # Hook into the color controller to apply color transformations
             if self._color_ctrl:
-                fg = self._color_ctrl.adjust(fg)
-                bg = self._color_ctrl.adjust(bg)
+                fg = self._color_ctrl.transform(fg)
+                bg = self._color_ctrl.transform(bg)
             return ansi_sgr(text, fg, bg, style, reset, **sgr)
         else:
             return text

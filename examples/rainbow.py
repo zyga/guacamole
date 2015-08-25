@@ -193,7 +193,7 @@ class ANSIDemo(Command):
         if ctx.args.headers:
             self._header("24 bit RGB Color", ctx)
             self._sub_header(
-                "The bar below only displays 80 unique colors", ctx)
+                "The bar below only displays up to 80 unique colors", ctx)
         cols = 80
         for y in range(3):
             print(*[ctx.ansi(' ', fg='auto', bg=hsv(360.0 / cols * i, 1, 1))
@@ -203,7 +203,7 @@ class ANSIDemo(Command):
         if ctx.args.headers:
             self._header("24 bit RGB Color Grayscale", ctx)
             self._sub_header(
-                "The bar below only displays 80 unique colors", ctx)
+                "The bar below only displays up to 80 unique colors", ctx)
         cols = 80
         for y in range(3):
             print(*[ctx.ansi(' ', fg='auto', bg=hsv(0, 0,  1.0 / cols * i))

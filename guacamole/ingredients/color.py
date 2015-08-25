@@ -591,10 +591,10 @@ class ColorMixerBase(object):
 # NOTE: The ColorController has a fast path for the pass-through case. It is
 # best not to actually use the PassthruColorMixer
 
-class PassthruColorMixer(ColorMixerBase):
+class TrueColorMixer(ColorMixerBase):
 
     """
-    Passthrough RGB color mixer.
+    True Color mixer.
 
     This color mixer simply returns the r, g, b data without reinterpretation.
 
@@ -605,6 +605,7 @@ class PassthruColorMixer(ColorMixerBase):
     name = _("24bit RGB (TrueColor)")
     slug = 'truecolor'
     preferred_mode = ColorPalette.PREFER_TRUECOLOR
+    needs_palette = False
 
     def mix(self, r, g, b, terminal_palette):
         """
@@ -634,15 +635,24 @@ class PassthruColorMixer(ColorMixerBase):
 class FastIndexed256ColorMixer(ColorMixerBase):
 
     """
-    Fast mixer that reduces true color to one of 216 indexed values.
+    Fast mixer that reduces true color to one of 246 indexed values.
 
-    This mixer produces sub-optimal results because it only considers the 216
-    RGB fragment of the available 256 indexed colors. It operates by dividing
-    each channel by 256/6.0 which is 42.(6), clamping that to range(6)
-    then re-mapping the result to the 6*6*6 color cube.
+    This mixer produces sub-optimal results because it ignores the real
+    terminal emulator palette and simply assumes a given arrangement of colors.
+    The mixer has two code paths, one is optimized for grayscale colors, the
+    other for saturated colors.
+
+    The grayscale path is used when all of the color channels have the same
+    value. In that mode, the mixer uses one of the 24 linear grayscale values
+    as the output.
+
+    Int the saturated color path the mixer uses one of the 216 available RGB
+    colors from the 6*6*6 color cube. It operates by dividing each channel by
+    256/6.0 which is 42.(6), clamping that to range(6) then re-mapping the
+    result to the 6*6*6 color cube.
 
     It has the advantage of not requiring any lookup tables and producing
-    colors quickly but the perception is suboptimal.
+    colors quickly but the perception is somewhat suboptimal.
 
     This mixer uses PREFER_INDEXED_256 colors from the named color palette so
     that applications can avoid the inaccurate conversion if they provide a
@@ -652,6 +662,7 @@ class FastIndexed256ColorMixer(ColorMixerBase):
     name = _("Indexed 256 color palette (fast transform)")
     slug = 'fast-indexed-256'
     preferred_mode = ColorPalette.PREFER_INDEXED_256
+    needs_palette = False
 
     def mix(self, r, g, b, terminal_palette):
         """
@@ -679,7 +690,7 @@ class FastIndexed256ColorMixer(ColorMixerBase):
         # grayscale path if all the components are of the same magnitude.
         if r == g == b:
             # NOTE: 0xE8 is the offset of the 24 grayscale bar in the ANSI
-            # indexed color space.
+            # indexed color palette.
             return 0xE8 + r // (256 // 24)
         else:
             f = 256 / 6.0
@@ -693,7 +704,7 @@ class FastIndexed256ColorMixer(ColorMixerBase):
             g = max(0, min(g, 5))
             b = max(0, min(b, 5))
             # NOTE: 0x10 is the offset of the 6 * 6 * 6 color cube in the ANSI
-            # indexed color space.
+            # indexed color palette.
             return 0x10 + r * 36 + g * 6 + b
 
 
@@ -721,6 +732,7 @@ class AccurateIndexed256ColorMixer(ColorMixerBase):
     name = _("Indexed 256 color palette (accurate transform)")
     slug = 'accurate-indexed-256'
     preferred_mode = ColorPalette.PREFER_INDEXED_256
+    needs_palette = True
 
     def mix(self, r, g, b, terminal_palette):
         """
@@ -769,7 +781,10 @@ class Indexed8ColorMixer(ColorMixerBase):
     unreadable mess.
 
     It operates by looking for minimal distance between the input color and
-    each of the eight colors of the terminal emulator palette.
+    each of the eight colors of the terminal emulator palette. To avoid
+    creating unexpected colors, it has a special case when all of the base
+    components have the same magnitude. In that mode it will simply output
+    black or white, depending on the threshold.
 
     This mixer uses PREFER_INDEXED_8 colors so that applications can take
     advantage of optimized, low-color palette entries for named colors.
@@ -778,6 +793,7 @@ class Indexed8ColorMixer(ColorMixerBase):
     name = _("Indexed 8 color palette")
     slug = 'indexed-8'
     preferred_mode = ColorPalette.PREFER_INDEXED_8
+    needs_palette = True
 
     def mix(self, r, g, b, terminal_palette):
         """
@@ -870,8 +886,8 @@ class ColorController(object):
         self._active = False
         self._color_palette = ColorPalette()
         self._terminal_palette = None
-        self._accessibility_emulator = None
         self._color_mixer = None
+        self._accessibility_emulator = None
         # Basic ANSI colors
         self.add_colors(
             black=0, red=1, green=2, yellow=3, blue=4, magenta=5, cyan=6,
@@ -910,13 +926,17 @@ class ColorController(object):
 
         :param value:
             The slug of a well-known color palette or any
-            :class:`TerminalPalette` object.
+            :class:`TerminalPalette` object, the object ``None`` or the string
+            ``"none"``.
         :raises ValueError:
             If the supplied value is not a well-known palette slug.
         :raises TypeError:
             If the supplied value unsupported.
         """
         if isinstance(value, _string_types):
+            if value == 'none':
+                self._terminal_palette = None
+                return
             for palette in self.get_available_terminal_palettes():
                 if palette.slug == value:
                     self._terminal_palette = palette
@@ -927,37 +947,6 @@ class ColorController(object):
             self._terminal_palette = value
         else:
             raise TypeError("value must be a palette or palette slug")
-
-    @property
-    def accessibility_emulator(self):
-        """The currently configured accessibility emulator."""
-        return self._accessibility_emulator
-
-    @accessibility_emulator.setter
-    def accessibility_emulator(self, value):
-        """
-        Set the accessibility emulator.
-
-        :param value:
-            The slug of a well-known accessibility emulator or any
-            :class:`AccessibilityEmulator` emulator object.
-        :raises ValueError:
-            If the supplied value is not a well-known accessibility emulator
-            slug.
-        :raises TypeError:
-            If the supplied value unsupported.
-        """
-        if isinstance(value, _string_types):
-            for emulator in self.get_available_accessibility_emulators():
-                if emulator.slug == value:
-                    self._accessibility_emulator = emulator
-                    break
-            else:
-                raise ValueError("Unknown emulator: {!r}".format(value))
-        elif isinstance(value, AccessibilityEmulator):
-            self._accessibility_emulator = value
-        else:
-            raise TypeError("value must be an emulator or emulator slug")
 
     @property
     def color_mixer(self):
@@ -971,13 +960,16 @@ class ColorController(object):
 
         :param value:
             The slug of a well-known color mixer or any :class:`ColorMixerBase`
-            mixer object.
+            mixer object, the object ``None`` or the string ``"none"``.
         :raises ValueError:
             If the supplied value is not a well-known color mixer slug.
         :raises TypeError:
             If the supplied value unsupported.
         """
         if isinstance(value, _string_types):
+            if value == 'none':
+                self._color_mixer = None
+                return
             for mixer in self.get_available_color_mixers():
                 if mixer.slug == value:
                     self._color_mixer = mixer
@@ -988,6 +980,41 @@ class ColorController(object):
             self._color_mixer = value
         else:
             raise TypeError("value must be a color mixer or color mixer slug")
+
+    @property
+    def accessibility_emulator(self):
+        """The currently configured accessibility emulator."""
+        return self._accessibility_emulator
+
+    @accessibility_emulator.setter
+    def accessibility_emulator(self, value):
+        """
+        Set the accessibility emulator.
+
+        :param value:
+            The slug of a well-known accessibility emulator or any
+            :class:`AccessibilityEmulator` emulator object, the object ``None``
+            or the string ``"none"``.
+        :raises ValueError:
+            If the supplied value is not a well-known accessibility emulator
+            slug.
+        :raises TypeError:
+            If the supplied value unsupported.
+        """
+        if isinstance(value, _string_types):
+            if value == 'none':
+                self._accessibility_emulator = None
+                return
+            for emulator in self.get_available_accessibility_emulators():
+                if emulator.slug == value:
+                    self._accessibility_emulator = emulator
+                    break
+            else:
+                raise ValueError("Unknown emulator: {!r}".format(value))
+        elif isinstance(value, AccessibilityEmulator):
+            self._accessibility_emulator = value
+        else:
+            raise TypeError("value must be an emulator or emulator slug")
 
     def add_colors(self, **palette):
         """
@@ -1022,40 +1049,50 @@ class ColorController(object):
 
         .. note::
             This method depends on the active flag, pre-configured terminal
-            palette and pre-configured accessibility emulator.
+            palette, pre-configured accessibility emulator and the
+            pre-configured color mixer.
+
+        .. note::
+            Even if the color controller is disabled it will resolve named
+            colors from the palette.
         """
         if color is None:
             return
-        if not self._active:
-            return color
+        # Do a palette color-name lookup unconditionally so that named colors
+        # can be resolved successfully even if the color controller is
+        # otherwise disabled.
+        #
+        # When no mixer is set, the code will prefer indexed-256 mode as it is
+        # the safest choice.
         if self._color_mixer is not None:
             preferred_mode = self._color_mixer.preferred_mode
         else:
-            preferred_mode = ColorPalette.PREFER_TRUECOLOR
-        # Do an early name-based lookup
+            preferred_mode = ColorPalette.PREFER_INDEXED_256
         if isinstance(color, _string_types):
             color = self._color_palette.resolve(color, preferred_mode)
+        # If the color controller is not enabled just return the color without
+        # further transformations.
+        if not self._active:
+            return color
+        # If we don't have a terminal emulator palette or a color mixer then no
+        # further work should be done, just return an indexed value as-is.
+        if self._terminal_palette is None or self._color_mixer is None:
+            return color
+        # If the color is an indexed color number from the 8 or 256 entry
+        # palette then use the terminal emulator palette to reconstruct the
+        # (r, g, b) color.
         if isinstance(color, int):
-            # If an indexed color is used and a palette is enabled, use the
-            # palette to resolve the color index to an (r, g, b) tuple.
-            if self._terminal_palette is None:
-                return color
             r, g, b = self._terminal_palette.resolve_fast(color)
         elif isinstance(color, tuple):
             r, g, b = color
         else:
             raise ValueError(
                 "Unsupported color representation: {!r}".format(color))
-        # Allow the emulator to adjust all colors, if one is enabled.
+        # Allow the emulator to change the color, if one is enabled.
         if self._accessibility_emulator is not None:
             r, g, b = self._accessibility_emulator.transform(r, g, b)
-        # Use the mixer to output the final color, if one is enabled
-        if self._color_mixer is not None:
-            palette = (self._terminal_palette.palette
-                       if self._terminal_palette else XTermPalette.palette)
-            return self._color_mixer.mix(r, g, b, palette)
-        else:
-            return r, g, b
+        # Use the mixer to output the final color
+        return self._color_mixer.mix(r, g, b, self._terminal_palette.palette)
 
     @staticmethod
     def get_available_terminal_palettes():
@@ -1103,7 +1140,7 @@ class ColorController(object):
             A tuple containing all supported color mixers.
         """
         return (
-            PassthruColorMixer(),
+            TrueColorMixer(),
             FastIndexed256ColorMixer(),
             AccurateIndexed256ColorMixer(),
             Indexed8ColorMixer(),
@@ -1151,11 +1188,13 @@ class ColorIngredient(Ingredient):
         """
         if self._enable_by_default:
             context.color_ctrl.active = True
-            # This is conservative but safe
             context.color_ctrl.color_mixer = 'fast-indexed-256'
+            context.color_ctrl.terminal_palette = 'xterm-256color'
         if self._expose_argparse:
-            if context.args.enable_color_controller:
+            if context.args.enable_color_controller is True:
                 self.color_ctrl.active = True
+            elif context.args.enable_color_controller is False:
+                self.color_ctrl.active = False
             if context.args.terminal_palette:
                 self.color_ctrl.terminal_palette = (
                     context.args.terminal_palette)
@@ -1167,25 +1206,37 @@ class ColorIngredient(Ingredient):
 
     def _add_argparse_options(self, parser):
         group = parser.add_argument_group("Color control")
+        # Add the --enable-color-controller and --disable-color-controller
+        # arguments. One of those is hidden depending on the presence or
+        # absence of the 'color:enable' spice.
         group.add_argument(
             '--enable-color-controller', action='store_true',
-            help=(argparse.SUPPRESS if self._enable_by_default
-                  else _("enable the color controller")))
+            default=None, help=(
+                argparse.SUPPRESS if self._enable_by_default
+                else _("enable the color controller")))
+        group.add_argument(
+            '--disable-color-controller', action='store_false',
+            dest='enable_color_controller', help=(
+                argparse.SUPPRESS if not self._enable_by_default
+                else _("disable the color controller")))
         # Add the --terminal-palette argument
         group.add_argument(
             "--terminal-palette", metavar=_("TERMINAL-PALETTE"),
-            choices=[str(palette.slug) for palette in
-                     self.color_ctrl.get_available_terminal_palettes()],
+            choices=[str('none')] + [
+                str(palette.slug) for palette in
+                self.color_ctrl.get_available_terminal_palettes()],
             help="translate indexed colors using selected terminal palette")
-        # Add the --accessibility-emulator argument
-        group.add_argument(
-            "--accessibility-emulator", metavar=_("ACCESSIBILITY-EMULATOR"),
-            choices=[str(emulator.slug) for emulator in
-                     self.color_ctrl.get_available_accessibility_emulators()],
-            help="emulate selected variant of color-blindness")
         # Add the --color-mixer argument
         group.add_argument(
             "--color-mixer", metavar=_("COLOR-MIXER"),
-            choices=[str(mixer.slug) for mixer in
-                     self.color_ctrl.get_available_color_mixers()],
+            choices=[str('none')] + [
+                str(mixer.slug) for mixer in
+                self.color_ctrl.get_available_color_mixers()],
             help="use the specific color mixer")
+        # Add the --accessibility-emulator argument
+        group.add_argument(
+            "--accessibility-emulator", metavar=_("ACCESSIBILITY-EMULATOR"),
+            choices=[str('none')] + [
+                str(emulator.slug) for emulator in
+                self.color_ctrl.get_available_accessibility_emulators()],
+            help="emulate selected variant of color-blindness")

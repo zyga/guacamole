@@ -691,7 +691,7 @@ class FastIndexed256ColorMixer(ColorMixerBase):
         if r == g == b:
             # NOTE: 0xE8 is the offset of the 24 grayscale bar in the ANSI
             # indexed color palette.
-            return 0xE8 + r // (256 // 24)
+            return 0xE8 + int(r / (256.0 / 24))
         else:
             f = 256 / 6.0
             r /= f

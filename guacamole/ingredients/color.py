@@ -23,6 +23,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import argparse
 import array
 import gettext
+import math
 
 from guacamole.core import Ingredient
 
@@ -538,7 +539,7 @@ Achromatomaly = AccessibilityEmulator(
     "achromatomaly", _("Achromatomaly"))
 
 
-class ColorMixer(object):
+class ColorMixerBase(object):
 
     """
     A filter for color post-processing.
@@ -546,27 +547,16 @@ class ColorMixer(object):
     This class is essentially a function mapping colors to colors. It can be
     used to implement the RGB-to-indexed downmixing that is required on many
     terminal emulators.
+
+    :attr slug:
+        The non-translatable identifier of this mixer.
+    :attr name:
+        A human-readable name of the accessibility emulator.
+    :attr preferred_mode:
+        The preferred named color resolution mode. This is either
+        ColorPalette.PREFER_TRUECOLOR, ColorPalette.PREFER_INDEXED_256 or
+        ColorPalette.PREFER_INDEXED_8.
     """
-
-    def __init__(self, slug, name, preferred_mode, fn):
-        """
-        Initialize a new color mixer with a given filter and name.
-
-        :param slug:
-            The non-translatable identifier of this mixer.
-        :param name:
-            A human-readable name of the accessibility emulator.
-        :param preferred_mode:
-            The preferred named color resolution mode. This is either
-            ColorPalette.PREFER_TRUECOLOR, ColorPalette.PREFER_INDEXED_256 or
-            ColorPalette.PREFER_INDEXED_8.
-        :param fn:
-            The color transformation function to use.
-        """
-        self.slug = slug
-        self.name = name
-        self.preferred_mode = preferred_mode
-        self.fn = fn
 
     def __str__(self):
         """Get the name of a color mixer."""
@@ -576,9 +566,256 @@ class ColorMixer(object):
         """Get the debugging representation of a color mixer."""
         return "<{0} {1}>".format(self.__class__.__name__, self.slug)
 
-    def mix(self, r, g, b):
-        """Transform the input color according to the matrix."""
-        return self.fn(r, g, b)
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+        """
+        raise NotImplementedError
+
+
+# NOTE: The ColorController has a fast path for the pass-through case. It is
+# best not to actually use the PassthruColorMixer
+
+class PassthruColorMixer(ColorMixerBase):
+
+    """
+    Passthrough RGB color mixer.
+
+    This color mixer simply returns the r, g, b data without reinterpretation.
+
+    This mixer uses PREFER_TRUECOLOR colors from the named color palette so
+    that applications can have full fidelity in expressing the desired color.
+    """
+
+    name = _("24bit RGB (TrueColor)")
+    slug = 'truecolor'
+    preferred_mode = ColorPalette.PREFER_TRUECOLOR
+
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+
+        .. note::
+            This implementation always returns ``(r, g, b)`` unchanged.
+        """
+        return (r, g, b)
+
+
+class FastIndexed256ColorMixer(ColorMixerBase):
+
+    """
+    Fast mixer that reduces true color to one of 216 indexed values.
+
+    This mixer produces sub-optimal results because it only considers the 216
+    RGB fragment of the available 256 indexed colors. It operates by dividing
+    each channel by 256/6.0 which is 42.(6), clamping that to range(6)
+    then re-mapping the result to the 6*6*6 color cube.
+
+    It has the advantage of not requiring any lookup tables and producing
+    colors quickly but the perception is suboptimal.
+
+    This mixer uses PREFER_INDEXED_256 colors from the named color palette so
+    that applications can avoid the inaccurate conversion if they provide a
+    hand-picked indexed color variant for each named color.
+    """
+
+    name = _("Indexed 256 color palette (fast transform)")
+    slug = 'fast-indexed-256'
+    preferred_mode = ColorPalette.PREFER_INDEXED_256
+
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+
+        .. note::
+            This implementation always returns an indexed color.
+        """
+        # To avoid coloring grayscale colors, include a special case
+        # grayscale path if all the components are of the same magnitude.
+        if r == g == b:
+            # NOTE: 0xE8 is the offset of the 24 grayscale bar in the ANSI
+            # indexed color space.
+            return 0xE8 + r // (256 // 24)
+        else:
+            f = 256 / 6.0
+            r /= f
+            g /= f
+            b /= f
+            r = int(r)
+            g = int(g)
+            b = int(b)
+            r = max(0, min(r, 5))
+            g = max(0, min(g, 5))
+            b = max(0, min(b, 5))
+            # NOTE: 0x10 is the offset of the 6 * 6 * 6 color cube in the ANSI
+            # indexed color space.
+            return 0x10 + r * 36 + g * 6 + b
+
+
+class AccurateIndexed256ColorMixer(ColorMixerBase):
+
+    """
+    Accurate mixer that reduces true color to one of 256 indexed values.
+
+    This mixer produces pretty good results as it considers each of the 256
+    palette entries. It is significantly slower than its cousin
+    :class:`FastIndexed256ColorMixer` so depending on the application you may
+    not want to use it.
+
+    It operates by looking for minimal distance between the input color and
+    each of the colors of the terminal emulator palette. Unlike other mixers it
+    does take advantage of the terminal palette to improve accuracy of the
+    conversion. This means that the resulting color is may be different from
+    one system to another but the perceived color should be the same.
+
+    This mixer uses PREFER_INDEXED_256 colors from the named color palette so
+    that applications can avoid the costly conversion if they provide a
+    hand-picked indexed color variant for each named color.
+    """
+
+    name = _("Indexed 256 color palette (accurate transform)")
+    slug = 'accurate-indexed-256'
+    preferred_mode = ColorPalette.PREFER_INDEXED_256
+
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+
+        .. note::
+            This implementation always returns an indexed color.
+        """
+        min_distance = 1000
+        min_distance_idx = 0
+        for idx, (r2, g2, b2) in enumerate(terminal_palette):
+            distance = math.sqrt((r - r2) ** 2 + (g - g2) ** 2 + (b - b2) ** 2)
+            if distance == 0:
+                return idx
+            elif distance < min_distance:
+                min_distance = distance
+                min_distance_idx = idx
+        return min_distance_idx
+
+
+class Indexed8ColorMixer(ColorMixerBase):
+
+    """
+    Mixer that reduces true color to one of 8 classic indexed values.
+
+    This mixer produces rather terrible results simply because of the bare
+    minimum combination of available output colors. It can be used to
+    downconvert a full-color application to DOS or Linux Console environment.
+    It is strongly recommended that applications use optimized, hand-picked
+    colors however, as otherwise the application may be a colorful, perhaps
+    unreadable mess.
+
+    It operates by looking for minimal distance between the input color and
+    each of the eight colors of the terminal emulator palette.
+
+    This mixer uses PREFER_INDEXED_8 colors so that applications can take
+    advantage of optimized, low-color palette entries for named colors.
+    """
+
+    name = _("Indexed 8 color palette")
+    slug = 'indexed-8'
+    preferred_mode = ColorPalette.PREFER_INDEXED_8
+
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+
+        .. note::
+            This implementation always returns an indexed color.
+        """
+        # To avoid coloring grayscale colors, include a special case
+        # (black/white) exit path if all the components are of the same
+        # magnitude.
+        if r == g == b:
+            return 7 if r > 127 else 0
+        min_distance = 1000
+        min_distance_idx = 0
+        for idx, (r2, g2, b2) in enumerate(terminal_palette[:8]):
+            distance = math.sqrt((r - r2) ** 2 + (g - g2) ** 2 + (b - b2) ** 2)
+            if distance == 0:
+                return idx
+            elif distance < min_distance:
+                min_distance = distance
+                min_distance_idx = idx
+        return min_distance_idx
 
 
 def get_intensity(r, g, b):
@@ -593,59 +830,6 @@ def get_intensity(r, g, b):
         (brightness) of the input color.
     """
     return int(0.3 * r + 0.59 * g + 0.11 * b)
-
-
-def rgb_to_indexed_666(r, g, b):
-    """
-    Down-mix a 24bit 8:8:8 RGB color to ANSI index palette.
-
-    :param rgb:
-        A tuple ``(r, g, b)`` where each component is an integer in
-        ``range(256)``.
-    :returns:
-        An integer in ``range(256)`` which represents one of the indexed
-        6-level RGB intensity ANSI colors that approximates the input color.
-    """
-    f = 256 / 6.0
-    r /= f
-    g /= f
-    b /= f
-    r = int(r)
-    g = int(g)
-    b = int(b)
-    r = max(0, min(r, 5))
-    g = max(0, min(g, 5))
-    b = max(0, min(b, 5))
-    return 0x10 + r * 6 * 6 + g * 6 + b
-
-
-def rgb_to_indexed_8(r, g, b):
-    """
-    Down-mix a 24bit 8:8:8 RGB color to ANSI index palette.
-
-    :param rgb:
-        A tuple ``(r, g, b)`` where each component is an integer in
-        ``range(256)``.
-    :returns:
-        An integer in ``range(8)`` which represents one of the indexed classic
-        ANSI colors that approximates the input color.
-    """
-    raise NotImplementedError
-
-
-TrueColorMixer = ColorMixer(
-    'truecolor', _("24bit RGB (TrueColor)"),
-    ColorPalette.PREFER_TRUECOLOR, lambda r, g, b: (r, g, b))
-
-
-Indexed256Mixer = ColorMixer(
-    'indexed-256', _("6*6*6 ANSI indexed colors"),
-    ColorPalette.PREFER_INDEXED_256, rgb_to_indexed_666)
-
-
-Indexed8Mixer = ColorMixer(
-    'indexed-8', _("Classic ANSI indexed colors"),
-    ColorPalette.PREFER_INDEXED_8, rgb_to_indexed_8)
 
 
 class ColorController(object):
@@ -692,10 +876,17 @@ class ColorController(object):
         self.add_colors(
             black=0, red=1, green=2, yellow=3, blue=4, magenta=5, cyan=6,
             white=7)
-        # Extended ANSI colors
+        # Extended ANSI colors.
+        # NOTE: each color is provided twice, the second entry is for the
+        # smaller 8-entry palette. Here they map just exactly back to the
+        # non-bright variants listed above. This is done so that applications
+        # can use all the bright variants in a portable manner and the
+        # application will still behave correctly in low-color environments
+        # (DOS or Linux Console)
         self.add_colors(
-            bright_black=8, bright_red=9, bright_green=10, bright_yellow=11,
-            bright_blue=12, bright_magenta=13, bright_cyan=14, bright_white=15)
+            bright_black=(8, 0), bright_red=(9, 1), bright_green=(10, 2),
+            bright_yellow=(11, 3), bright_blue=(12, 4), bright_magenta=(13, 5),
+            bright_cyan=(14, 6), bright_white=(15, 7))
 
     @property
     def active(self):
@@ -779,7 +970,7 @@ class ColorController(object):
         Set the color mixer.
 
         :param value:
-            The slug of a well-known color mixer or any :class:`ColorMixer`
+            The slug of a well-known color mixer or any :class:`ColorMixerBase`
             mixer object.
         :raises ValueError:
             If the supplied value is not a well-known color mixer slug.
@@ -793,7 +984,7 @@ class ColorController(object):
                     break
             else:
                 raise ValueError("Unknown mixer: {!r}".format(value))
-        elif isinstance(value, ColorMixer):
+        elif isinstance(value, ColorMixerBase):
             self._color_mixer = value
         else:
             raise TypeError("value must be a color mixer or color mixer slug")
@@ -860,7 +1051,9 @@ class ColorController(object):
             r, g, b = self._accessibility_emulator.transform(r, g, b)
         # Use the mixer to output the final color, if one is enabled
         if self._color_mixer is not None:
-            return self._color_mixer.mix(r, g, b)
+            palette = (self._terminal_palette.palette
+                       if self._terminal_palette else XTermPalette.palette)
+            return self._color_mixer.mix(r, g, b, palette)
         else:
             return r, g, b
 
@@ -910,9 +1103,10 @@ class ColorController(object):
             A tuple containing all supported color mixers.
         """
         return (
-            TrueColorMixer,
-            Indexed256Mixer,
-            Indexed8Mixer,
+            PassthruColorMixer(),
+            FastIndexed256ColorMixer(),
+            AccurateIndexed256ColorMixer(),
+            Indexed8ColorMixer(),
         )
 
 
@@ -957,9 +1151,8 @@ class ColorIngredient(Ingredient):
         """
         if self._enable_by_default:
             context.color_ctrl.active = True
-            context.color_ctrl.terminal_palette = 'xterm-256color'
             # This is conservative but safe
-            context.color_ctrl.color_mixer = 'indexed-256'
+            context.color_ctrl.color_mixer = 'fast-indexed-256'
         if self._expose_argparse:
             if context.args.enable_color_controller:
                 self.color_ctrl.active = True

@@ -61,6 +61,8 @@ class ANSIDemo(Command):
                 self._demo_bg_indexed(ctx)
             if ctx.args.rainbow:
                 self._demo_rgb(ctx)
+            if ctx.args.grayscale:
+                self._demo_grayscale(ctx)
             if ctx.args.style:
                 self._demo_style(ctx)
 
@@ -78,6 +80,8 @@ class ANSIDemo(Command):
             default=True)
         parser.add_argument(
             '--no-rainbow', action='store_false', dest='rainbow', default=True)
+        parser.add_argument(
+            '--no-grayscale', action='store_false', dest='grayscale', default=True)
         parser.add_argument(
             '--no-style', action='store_false', dest='style', default=True)
         parser.add_argument(
@@ -193,6 +197,16 @@ class ANSIDemo(Command):
         cols = 80
         for y in range(3):
             print(*[ctx.ansi(' ', fg='auto', bg=hsv(360.0 / cols * i, 1, 1))
+                    for i in range(cols)], sep='')
+
+    def _demo_grayscale(self, ctx):
+        if ctx.args.headers:
+            self._header("24 bit RGB Color Grayscale", ctx)
+            self._sub_header(
+                "The bar below only displays 80 unique colors", ctx)
+        cols = 80
+        for y in range(3):
+            print(*[ctx.ansi(' ', fg='auto', bg=hsv(0, 0,  1.0 / cols * i))
                     for i in range(cols)], sep='')
 
     def _demo_style(self, ctx):

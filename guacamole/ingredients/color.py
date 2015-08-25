@@ -691,7 +691,9 @@ class FastIndexed256ColorMixer(ColorMixerBase):
         if r == g == b:
             # NOTE: 0xE8 is the offset of the 24 grayscale bar in the ANSI
             # indexed color palette.
-            return 0xE8 + int(r / (256.0 / 24))
+            color = 0xE8 + int(r / (256.0 / 24))
+            assert color in range(0xE8, 0x100)
+            return color
         else:
             f = 256 / 6.0
             r /= f
@@ -705,7 +707,63 @@ class FastIndexed256ColorMixer(ColorMixerBase):
             b = max(0, min(b, 5))
             # NOTE: 0x10 is the offset of the 6 * 6 * 6 color cube in the ANSI
             # indexed color palette.
-            return 0x10 + r * 36 + g * 6 + b
+            assert r in range(6)
+            assert g in range(6)
+            assert b in range(6)
+            assert r * 36 + g * 6 + b in range(216)
+            color = 0x10 + r * 36 + g * 6 + b
+            assert color in range(0x10, 0xE8)
+            return color
+
+
+class FastIndexed8ColorMixer(ColorMixerBase):
+
+    """
+    Mixer that reduces true color to one of 8 classic indexed values.
+
+    This mixer produces rather terrible results simply because of the bare
+    minimum combination of available output colors. It can be used to
+    downconvert a full-color application to DOS or Linux Console environment.
+    It is strongly recommended that applications use optimized, hand-picked
+    colors however, as otherwise the application may be a colorful, perhaps
+    unreadable mess.
+
+    It operates by reducing the bit depth of each color channel to one.
+
+    This mixer uses PREFER_INDEXED_8 colors so that applications can take
+    advantage of optimized, low-color palette entries for named colors.
+    """
+
+    name = _("Indexed 8 color palette (fast transform)")
+    slug = 'fast-indexed-8'
+    preferred_mode = ColorPalette.PREFER_INDEXED_8
+    needs_palette = False
+
+    def mix(self, r, g, b, terminal_palette):
+        """
+        Optionally downmix the input color to an indexed color.
+
+        :param r:
+            The red component. It is always an integer in ``range(256)``.
+        :param g:
+            The blue component. It is always an integer in ``range(256)``.
+        :param b:
+            The green component. It is always an integer in ``range(256)``.
+        :param terminal_palette:
+            An array / tuple of exactly 256 entries. Each entry maps to a
+            3-tuple ``(r, g, b)`` that describes the actual color used by the
+            terminal emulator to render the corresponding indexed color.
+        :returns:
+            The downmixed color. It can be the either the ``(r, g, b)`` input
+            color or a new integer in ``range(256)`` that corresponds to the
+            input color.
+
+        .. note::
+            This implementation always returns an indexed color.
+        """
+        color = ((r >> 7) << 2) | ((g >> 7)) << 1 | (b >> 7)
+        assert color in range(8)
+        return color
 
 
 class AccurateIndexed256ColorMixer(ColorMixerBase):
@@ -765,10 +823,11 @@ class AccurateIndexed256ColorMixer(ColorMixerBase):
             elif distance < min_distance:
                 min_distance = distance
                 min_distance_idx = idx
+        assert min_distance_idx in range(0x100)
         return min_distance_idx
 
 
-class Indexed8ColorMixer(ColorMixerBase):
+class AccurateIndexed8ColorMixer(ColorMixerBase):
 
     """
     Mixer that reduces true color to one of 8 classic indexed values.
@@ -790,10 +849,10 @@ class Indexed8ColorMixer(ColorMixerBase):
     advantage of optimized, low-color palette entries for named colors.
     """
 
-    name = _("Indexed 8 color palette")
-    slug = 'indexed-8'
+    name = _("Indexed 8 color palette (accurate transform)")
+    slug = 'accurate-indexed-8'
     preferred_mode = ColorPalette.PREFER_INDEXED_8
-    needs_palette = True
+    needs_palette = False
 
     def mix(self, r, g, b, terminal_palette):
         """
@@ -817,6 +876,9 @@ class Indexed8ColorMixer(ColorMixerBase):
         .. note::
             This implementation always returns an indexed color.
         """
+        color = ((r >> 7) << 2) | ((g >> 7)) << 1 | (b >> 7)
+        assert color in range(8)
+        return color
         # To avoid coloring grayscale colors, include a special case
         # (black/white) exit path if all the components are of the same
         # magnitude.
@@ -831,6 +893,7 @@ class Indexed8ColorMixer(ColorMixerBase):
             elif distance < min_distance:
                 min_distance = distance
                 min_distance_idx = idx
+        assert min_distance_idx in range(0x100)
         return min_distance_idx
 
 
@@ -1142,8 +1205,9 @@ class ColorController(object):
         return (
             TrueColorMixer(),
             FastIndexed256ColorMixer(),
+            FastIndexed8ColorMixer(),
             AccurateIndexed256ColorMixer(),
-            Indexed8ColorMixer(),
+            AccurateIndexed8ColorMixer(),
         )
 
 

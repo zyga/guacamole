@@ -25,6 +25,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import gettext
 import os
 import sys
+import collections
 
 from guacamole.core import Ingredient
 
@@ -35,30 +36,16 @@ __all__ = ('TerminalIngredient',)
 _string_types = (type(""), str)
 
 
-class TerminalFeature(object):
+class TerminalFeature(
+        collections.namedtuple("TerminalFeatureBase", "slug name test_sgr")):
 
     """Information about a particular terminal emulator feature."""
-
-    def __init__(self, slug, name, test_sgr):
-        self.slug = slug
-        self.name = name
-        if test_sgr is None:
-            test_sgr = {}
-        self.test_sgr = test_sgr
 
     def __str__(self):
         return self.name
 
     def __hash__(self):
-        return hash(self.slug)
-
-    def __eq__(self, other):
-        if isinstance(other, TerminalFeature):
-            return self.slug == other.slug
-        elif isinstance(other, _string_types):
-            return self.slug == other
-        else:
-            return False
+        return hash(self.name)
 
     def __repr__(self):
         return '<{} {}>'.format(self.__class__.__name__, self.slug)
@@ -123,7 +110,7 @@ _all_features = (
 )
 
 
-class Terminal(object):
+class Terminal(collections.namedtuple("TerminalBase", "name version features")):
 
     """
     A terminal (emulator).
@@ -142,11 +129,6 @@ class Terminal(object):
         ``SUPPORTED`` or ``CONFIGURABLE``.
     """
 
-    def __init__(self, name, version, features):
-        self.name = name
-        self.version = version
-        self.features = features
-
     def __str__(self):
         return self.name
 
@@ -164,11 +146,16 @@ def guess_terminal():
     name = None
     version = None
     features = {feature: UNSUPPORTED for feature in _all_features}
-    if sys.platform == 'win32':
-        name = 'cmd.exe'
-        # cmd.exe supports 8 foreground and background colors
+    if sys.platform == 'win32' and (sys.stdout.isatty() or
+                                       sys.stderr.isatty()):
+        name = 'cmd.exe'               
+        # cmd.exe supports both 8 and 16 foreground and background colors
         features[ANSI_COLOR_FG_INDEXED_8] = SUPPORTED
         features[ANSI_COLOR_BG_INDEXED_8] = SUPPORTED
+        features[ANSI_COLOR_FG_INDEXED_16] = SUPPORTED
+        features[ANSI_COLOR_BG_INDEXED_16] = SUPPORTED
+        # Bold face is emulated as white text by colorama
+        features[ANSI_FONT_BOLD] = SUPPORTED
     elif sys.platform == 'darwin' and (sys.stdout.isatty() or
                                        sys.stderr.isatty()):
         # TERM = os.getenv("TERM")

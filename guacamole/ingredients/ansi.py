@@ -604,7 +604,7 @@ class ANSIIngredient(Ingredient):
             except ImportError:
                 enable = False
             else:
-                colorama.init()
+                colorama.init(wrap=True, convert=True)
         self._enable = enable
 
     def added(self, context):

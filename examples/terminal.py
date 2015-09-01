@@ -89,11 +89,14 @@ class TerminalFeatureCheck(Command):
         sample3 = 'SAMPLE-C'
         for status_only in range(3):
             if status_only == 0:
-                print("The following features are NOT SUPPORTED")
+                if any(status == 0 for status in ctx.terminal.features.values()):
+                    print("The following features are NOT SUPPORTED")
             elif status_only == 1:
-                print("The following features are CONFIGURABLE")
+                if any(status == 1 for status in ctx.terminal.features.values()):
+                    print("The following features are CONFIGURABLE")
             elif status_only == 2:
-                print("The following features are SUPPORTED")
+                if any(status == 2 for status in ctx.terminal.features.values()):
+                    print("The following features are SUPPORTED")
             for feature, status in sorted(ctx.terminal.features.items()):
                 if status != status_only:
                     continue

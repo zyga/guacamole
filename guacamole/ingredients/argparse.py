@@ -187,7 +187,7 @@ class ParserIngredient(Ingredient):
         max_level = level
         for subcmd_name, subcmd_obj, subcmd_cmds in cmd_subcmds:
             sub_parser = subparsers.add_parser(
-                subcmd_name, help=subcmd_obj.get_cmd_help(),
+                str(subcmd_name), help=subcmd_obj.get_cmd_help(),
                 **self._get_parser_kwargs(subcmd_obj))
             sub_parser.add_argument("-h", "--help", action="help")
             max_level = max(

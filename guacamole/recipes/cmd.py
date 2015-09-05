@@ -40,6 +40,7 @@ from guacamole.ingredients import argparse
 from guacamole.ingredients import cmdtree
 from guacamole.ingredients import crash
 from guacamole.ingredients import log
+from guacamole.ingredients import terminal
 from guacamole.recipes import Recipe
 
 
@@ -416,6 +417,7 @@ class CommandRecipe(Recipe):
             argparse.AutocompleteIngredient(),
             argparse.ParserIngredient(),
             crash.VerboseCrashHandler(),
+            terminal.TerminalAwareness(),
             ansi.ANSIIngredient(),
             log.Logging(),
         ]

@@ -49,3 +49,9 @@ Code Reference
 
 .. automodule:: guacamole.ingredients.ansi
 	:members:
+
+:mod:`guacamole.ingredients.terminal`
+=====================================
+
+	.. automodule:: guacamole.ingredients.terminal
+		:members:

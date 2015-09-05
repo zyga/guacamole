@@ -157,6 +157,12 @@ class ANSI(object):
         """Get SGR (Set Graphics Rendition) foreground indexed color."""
         return '38;5;{}'.format(i)
 
+    @staticmethod
+    def sgr_fg_classic(i):
+        """Get SGR (Set Graphics Rendition) foreground classic color."""
+        assert i in range(8), i
+        return '{}'.format(i + 30)
+
     sgr_fg_default = '39'
 
     # SGR 40-49: background color control
@@ -180,6 +186,12 @@ class ANSI(object):
         """Get SGR (Set Graphics Rendition) background indexed color."""
         return '48;5;{}'.format(i)
 
+    @staticmethod
+    def sgr_bg_classic(i):
+        """Get SGR (Set Graphics Rendition) background classic color."""
+        assert i in range(8), i
+        return '{}'.format(i + 40)
+
     sgr_bg_default = '49'
 
     # SGR 90-97: high-intensity foreground color control
@@ -193,6 +205,12 @@ class ANSI(object):
     sgr_fg_bright_cyan = '96'
     sgr_fg_bright_white = '97'
 
+    @staticmethod
+    def sgr_fg_bright(i):
+        """Get SGR (Set Graphics Rendition) bright foreground color."""
+        assert i in range(8), i
+        return '{}'.format(i + 90)
+
     # SGR 100-107: high-intensity background color control
 
     sgr_bg_bright_black = '100'
@@ -203,6 +221,12 @@ class ANSI(object):
     sgr_bg_bright_magenta = '105'
     sgr_bg_bright_cyan = '106'
     sgr_bg_bright_white = '107'
+
+    @staticmethod
+    def sgr_bg_bright(i):
+        """Get SGR (Set Graphics Rendition) bright background color."""
+        assert i in range(8)
+        return '{}'.format(i + 100)
 
 
 def ansi_cmd(cmd, *args):
@@ -304,7 +328,18 @@ def ansi_sgr(text, fg=None, bg=None, style=None, reset=True, **sgr):
         sgr_code = ANSI.sgr_fg_rgb(*fg)
         sgr_list.append(sgr_code)
     elif isinstance(fg, int):
-        sgr_code = ANSI.sgr_fg_indexed(fg)
+        if fg < -8:
+            assert fg in range(-16, -8), fg
+            # -16 to -9: bright colors
+            sgr_code = ANSI.sgr_fg_bright(-fg - 8 - 1)
+        elif fg < 0:
+            # -8 to -1 bright colors
+            # Negative numbers represent the classic colors
+            assert fg in range(-8, 0), fg
+            sgr_code = ANSI.sgr_fg_classic(-fg - 1)
+        else:
+            assert fg in range(256)
+            sgr_code = ANSI.sgr_fg_indexed(fg)
         sgr_list.append(sgr_code)
     elif fg is None:
         pass
@@ -322,7 +357,18 @@ def ansi_sgr(text, fg=None, bg=None, style=None, reset=True, **sgr):
         sgr_code = ANSI.sgr_bg_rgb(*bg)
         sgr_list.append(sgr_code)
     elif isinstance(bg, int):
-        sgr_code = ANSI.sgr_bg_indexed(bg)
+        if bg < -8:
+            assert bg in range(-16, -8), bg
+            # -16 to -9: bright colors
+            sgr_code = ANSI.sgr_bg_bright(-bg - 8 - 1)
+        elif bg < 0:
+            # -8 to -1 bright colors
+            # Negative numbers represent the classic colors
+            assert bg in range(-8, -1), bg
+            sgr_code = ANSI.sgr_bg_classic(-bg - 1)
+        else:
+            assert bg in range(256)
+            sgr_code = ANSI.sgr_bg_indexed(bg)
         sgr_list.append(sgr_code)
     elif bg is None:
         pass

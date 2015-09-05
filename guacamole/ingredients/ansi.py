@@ -150,11 +150,15 @@ class ANSI(object):
     @staticmethod
     def sgr_fg_rgb(r, g, b):
         """Get SGR (Set Graphics Rendition) foreground RGB color."""
+        assert r in range(256)
+        assert g in range(256)
+        assert b in range(256)
         return '38;2;{};{};{}'.format(r, g, b)
 
     @staticmethod
     def sgr_fg_indexed(i):
         """Get SGR (Set Graphics Rendition) foreground indexed color."""
+        assert i in range(256), i
         return '38;5;{}'.format(i)
 
     @staticmethod
@@ -179,11 +183,15 @@ class ANSI(object):
     @staticmethod
     def sgr_bg_rgb(r, g, b):
         """Get SGR (Set Graphics Rendition) background RGB color."""
+        assert r in range(256)
+        assert g in range(256)
+        assert b in range(256)
         return '48;2;{};{};{}'.format(r, g, b)
 
     @staticmethod
     def sgr_bg_indexed(i):
         """Get SGR (Set Graphics Rendition) background indexed color."""
+        assert i in range(256), i
         return '48;5;{}'.format(i)
 
     @staticmethod

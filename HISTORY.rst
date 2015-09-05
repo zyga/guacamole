@@ -4,6 +4,11 @@
 History
 =======
 
+0.10 (unreleased)
+-----------------
+
+* A whole-new logging ingredient (currently not documented)
+
 0.9.2 (2015-08-06)
 ------------------
 

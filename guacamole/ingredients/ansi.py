@@ -464,13 +464,13 @@ class ANSIFormatter(object):
             return text
 
     available_colors = (
-        str('black'), str('red'), str('green'), str('blue'), str('magenta'),
-        str('cyan'), str('white'))
+        str('black'), str('red'), str('green'), str('yellow'), str('blue'),
+        str('magenta'), str('cyan'), str('white'))
 
     available_bright_colors = (
         str('bright_black'), str('bright_red'), str('bright_green'),
-        str('bright_blue'), str('bright_magenta'), str('bright_cyan'),
-        str('bright_white'))
+        str('bright_yellow'), str('bright_blue'), str('bright_magenta'),
+        str('bright_cyan'), str('bright_white'))
 
     available_styles = (
         None, 'bold', 'dim', 'italic', 'underline', 'blink_slow', 'blink_fast',

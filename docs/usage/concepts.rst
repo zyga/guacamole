@@ -1,4 +1,4 @@
-.. _bundled_ingredients:
+.. _concepts:
 
 Recipes, Ingredients and Spices
 ===============================

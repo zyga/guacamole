@@ -1601,6 +1601,7 @@ class TerminalAwareness(Ingredient):
         else:
             name = _("Unknown")
             slug = "unknown"
+            version = None
             preset = PRESET_PRIMITIVE
         return Terminal(slug, name, version, preset, features)
 

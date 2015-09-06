@@ -8,6 +8,7 @@ History
 -----------------
 
 * A whole-new logging ingredient (currently not documented)
+* A whole-new terminal awareness ingredient (:ref:`terminal_awareness`)
 
 0.9.2 (2015-08-06)
 ------------------

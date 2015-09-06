@@ -11,3 +11,4 @@ ingredients.
    ansi
    cmdtree
    crash
+   terminal

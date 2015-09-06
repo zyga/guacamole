@@ -1362,6 +1362,36 @@ class RXVTProfile(TerminalProfile):
     )
 
 
+class URXVTProfile(TerminalProfile):
+
+    """Terminal profile for the RXVT terminal emulator."""
+
+    # Detectors
+    comm = '(urxvt)'
+    version_query_cmd = ['urxvt', '-help']
+    version_pattern = 'Usage v(.+?) '
+
+    # Facts
+    name = _("RXVT Unicode")
+    slug = str("linux-misc-urxvt")
+    preset = PRESET_COMMON
+    supported_versioned_features = {
+        '9.21': (
+            ANSI_COLOR_BG_INDEXED_256,
+            ANSI_COLOR_BG_INDEXED_8,
+            ANSI_COLOR_BG_INDEXED_8,
+            ANSI_COLOR_FG_INDEXED_16,
+            ANSI_COLOR_FG_INDEXED_16,
+            ANSI_COLOR_FG_INDEXED_256,
+            ANSI_COLOR_REVERSE,
+            ANSI_FONT_BOLD,
+            ANSI_TEXT_BLINK_FAST,
+            ANSI_TEXT_BLINK_SLOW,  # Both blink at the same speed though
+            ANSI_TEXT_UNDERLINE,
+        )
+    }
+
+
 class PTermProfile(TerminalProfile):
 
     """Terminal profile for the *pterm* terminal emulator."""
@@ -1473,6 +1503,7 @@ _all_terminal_profiles = (
     ETermProfile,
     PTermProfile,
     RXVTProfile,
+    URXVTProfile,
     TerminatorProfile,
     TerminologyProfile,
     XTermProfile,

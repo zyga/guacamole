@@ -555,6 +555,13 @@ class TerminalProfile(object):
     #: See :meth:`is_running()` for details. This can be safely None.
     TERM_PROGRAM = None
 
+    #: Flag indicating if this terminal is a multiplexer.
+    #:
+    #: Multiplexers preserve the environment form the external terminal
+    #: emulator, this includes TERM_PROGRAM and TERM_PROGRAM_VERSION which
+    #: should be ignored in such cases.
+    is_multiplexer = False
+
     #: A detector that looks for a given process name in the list of parent
     #: processes of an application using guacamole. Note that the name
     #: is always in parentheses and is truncated to certain fixed length.
@@ -643,10 +650,13 @@ class TerminalProfile(object):
         if cls.TERM is not None:
             if os.getenv("TERM") == cls.TERM:
                 return True
-        # Look for TERM_PROGRAM environment variable
-        if cls.TERM_PROGRAM is not None:
-            if os.getenv("TERM_PROGRAM") == cls.TERM_PROGRAM:
-                return True
+        # Multiplexers cannot take advantage of TERM_PROGRAM as it is the
+        # version of the outer host terminal.
+        if not cls.is_multiplexer:
+            # Look for TERM_PROGRAM environment variable
+            if cls.TERM_PROGRAM is not None:
+                if os.getenv("TERM_PROGRAM") == cls.TERM_PROGRAM:
+                    return True
         # Look at the list of processes to see if the terminal is running
         if cls.comm is not None:
             for info in proc_info_list:
@@ -678,14 +688,17 @@ class TerminalProfile(object):
         .. note::
             This method is only called when :meth:`is_running()` returned True.
         """
-        # Look for TERM_PROGRAM_VERSION environment variable
-        version = os.getenv("TERM_PROGRAM_VERSION")
-        if version:
-            # This takes priority over the more costly methods. It is assumed
-            # that if the environment variable _does_ exist it is set to the
-            # correct value. As of this writing only Terminal.app on OS X sets
-            # this variable.
-            return version
+        # Multiplexers cannot take advantage of TERM_PROGRAM_VERSION as it is
+        # the version of the outer host terminal.
+        if not cls.is_multiplexer:
+            # Look for TERM_PROGRAM_VERSION environment variable
+            version = os.getenv("TERM_PROGRAM_VERSION")
+            if version:
+                # This takes priority over the more costly methods. It is
+                # assumed that if the environment variable _does_ exist it is
+                # set to the correct value. As of this writing only
+                # Terminal.app on OS X sets this variable.
+                return version
         # Ask the terminal executable for its version if one is available
         if (cls.version_query_cmd is not None and
                 cls.version_pattern is not None):
@@ -913,9 +926,11 @@ class ScreenProfile(TerminalProfile):
     """Terminal profile for screen."""
 
     # Detectors
+    TERM = 'screen'
     comm = '(screen)'
     version_query_cmd = ['screen', '--version']
     version_pattern = 'Screen version ([0-9.]+?) '
+    is_multiplexer = True
 
     # Facts
     name = _("Screen Terminal Multiplexer")
@@ -946,6 +961,7 @@ class TmuxProfile(TerminalProfile):
     comm = '(tmux)'
     version_query_cmd = ['tmux', '-V']
     version_pattern = 'tmux ([0-9.]+)'
+    is_multiplexer = True
 
     # Facts
     name = _("Tmux Terminal Multiplexer")

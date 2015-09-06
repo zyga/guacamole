@@ -1111,7 +1111,10 @@ class GnomeTerminalProfile(TerminalProfile):
     # Detectors
     comm = '(gnome-terminal)'
     version_query_cmd = ['gnome-terminal', '--version']
-    version_pattern = 'Terminal GNOME (.+)'
+    # NOTE: The output of --version is localized. Here we're just
+    # looking for anything that is a dotted number. The part before
+    # (or perhaps after) the number is not relevant to us.
+    version_pattern = '.*?([0-9.]+)'
 
     # Facts
     name = _('Gnome Terminal')

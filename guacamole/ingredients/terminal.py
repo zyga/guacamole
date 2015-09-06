@@ -1179,6 +1179,7 @@ class KonsoleProfile(TerminalProfile):
     version_query_cmd = ['konsole', '-version']
     version_pattern = 'Konsole: (.+)'
 
+    # Facts
     name = _("Konsole")
     slug = str("linux-kde-konsole")
     preset = PRESET_MODERN

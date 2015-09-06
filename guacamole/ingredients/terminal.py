@@ -1204,6 +1204,38 @@ class KonsoleProfile(TerminalProfile):
     }
 
 
+class XFCE4Terminal(TerminalProfile):
+
+    """Terminal profile for XFCE4 Terminal."""
+
+    # Detectors
+    comm = '(xfce4-terminal)'
+    version_query_cmd = ['xfce4-terminal', '--version']
+    version_pattern = 'xfce4-terminal ([0-9.]+)'
+
+    # Facts
+    name = _("XFCE4 Terminal")
+    slug = str("linux-xfce4-terminal")
+    preset = PRESET_COMMON
+    supported_versioned_features = {
+        '0.6.3': (
+            ANSI_COLOR_DIM,
+            ANSI_COLOR_BG_INDEXED_16,
+            ANSI_COLOR_BG_INDEXED_8,
+            ANSI_COLOR_BG_INDEXED_256,
+            ANSI_COLOR_FG_INDEXED_16,
+            ANSI_COLOR_FG_INDEXED_8,
+            ANSI_COLOR_FG_INDEXED_256,
+            ANSI_COLOR_REVERSE,
+            ANSI_FONT_BOLD,
+            ANSI_FONT_BOLD,
+            ANSI_TEXT_CONCEALED,
+            ANSI_TEXT_CROSSED,
+            ANSI_TEXT_UNDERLINE,
+        ),
+    }
+
+
 class XTermProfile(TerminalProfile):
 
     """Terminal profile for XTerm."""
@@ -1434,6 +1466,7 @@ _all_terminal_profiles = (
     GnomeTerminalProfile,
     GnomeTerminalServerProfile,
     KonsoleProfile,
+    XFCE4Terminal,
     LinuxConsoleProfile,
     # Linux (other niche emulators)
     ATermProfile,
